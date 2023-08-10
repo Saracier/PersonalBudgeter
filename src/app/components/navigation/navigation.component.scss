@@ -1,0 +1,82 @@
+// @use "sass:map";
+// @use "@angular/material" as mat;
+// // @import "~@angular/material/theming";
+// @include mat.core();
+
+// $my-palette: mat.$indigo-palette;
+// $my-palette: mat.define-palette(mat.$indigo-palette);
+// $my-app-primary: mat.define-palette(mat.$indigo-palette);
+
+.container--sidebar {
+  width: 300px;
+  background-color: #494faf;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  // background-color: $my-app-primary;
+  // background-color: red;
+  // color: mat.get-color-from-palsette($my-palette, "500");
+}
+
+.logo {
+  display: block;
+  width: 50%;
+  margin: 2rem;
+  animation-duration: 0.3s;
+  animation-iteration-count: 2;
+  transform-origin: bottom;
+  filter: invert(100%);
+  // filter: invert(48%) sepia(79%) saturate(2476%) hue-rotate(86deg)
+  //   brightness(118%) contrast(119%);
+
+  &:hover {
+    animation-name: shake;
+  }
+}
+
+.container--sidebar__links {
+  display: flex;
+  flex-direction: column;
+  a {
+    margin: 20px;
+    font-size: 1.2rem;
+    padding: 1.5rem;
+  }
+}
+
+.container--sidebar__special {
+  a {
+    margin: 20px;
+    font-size: 1rem;
+  }
+}
+
+@keyframes shake {
+  0% {
+    transform: rotate(0deg);
+  }
+  25% {
+    transform: rotate(-5deg);
+  }
+  75% {
+    transform: rotate(5deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
+}
+
+@media (max-width: 600px) {
+  .container--sidebar {
+    // margin-top: calc(100% - 200px);
+    // height: calc(100% - 200px);
+    // width: 100%;
+    // margin-top: 200px;
+    margin-top: calc(150px);
+    height: calc(100% - 150px);
+    // justify-content: flex-end;
+  }
+}
