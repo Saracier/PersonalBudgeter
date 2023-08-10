@@ -1,16 +1,5 @@
 <div class="example-container" [class.example-is-mobile]="mobileQuery.matches">
-  <mat-toolbar color="primary" class="example-toolbar">
-    <!-- <button mat-icon-button (click)="snav.toggle()"> -->
-    <button
-      mat-icon-button
-      (click)="snav.toggle()"
-      [style.display]="mobileQuery.matches ? 'block' : 'none'"
-    >
-      <mat-icon>menu</mat-icon>
-    </button>
-    <h1 class="example-app-name">Responsive App</h1>
-  </mat-toolbar>
-
+  <app-header (toggleNav)="toggleNavHandler()"></app-header>
   <mat-sidenav-container
     class="example-sidenav-container"
     [style.marginTop.px]="mobileQuery.matches ? 56 : 0"
@@ -21,11 +10,12 @@
       [fixedInViewport]="mobileQuery.matches"
       fixedTopGap="56"
     >
-      <mat-nav-list> <!-- Side content -->sdfsdf </mat-nav-list>
+      <app-navigation></app-navigation>
     </mat-sidenav>
 
-    <mat-sidenav-content> <!-- Main dontent -->dfgdgfd </mat-sidenav-content>
+    <mat-sidenav-content
+      ><router-outlet></router-outlet>
+      <!-- Main dontent -->dfgdgfd
+    </mat-sidenav-content>
   </mat-sidenav-container>
 </div>
-
-<router-outlet></router-outlet>
