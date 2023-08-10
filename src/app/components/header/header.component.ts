@@ -28,7 +28,7 @@ export class HeaderComponent {
     this.mobileQuery = media.matchMedia('(max-width: 600px)');
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
     this.mobileQuery.addListener(this._mobileQueryListener);
-    setInterval(() => console.log(this.mobileQuery), 1000);
+    // setInterval(() => console.log(this.mobileQuery), 1000);
     // setInterval(() => {
     //   if (this.mobileQuery.matches) {
     //     console.log(this.snav);
@@ -36,6 +36,16 @@ export class HeaderComponent {
     //     // this.snav.toggle!();
     //   }
     // }, 1000);
+  }
+
+  ngOnInit() {
+    if (!this.mobileQuery.matches) {
+      this.toggleNav.emit();
+
+      // console.log(this.snav);
+      // setInterval(() => this.snav.open(), 1000);
+      // this.snav.toggle();
+    }
   }
 
   toggleNavHandler() {

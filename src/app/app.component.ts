@@ -31,14 +31,15 @@ export class AppComponent {
     // }, 1000);
   }
 
-  ngOnInit() {
-    if (!this.mobileQuery.matches) {
-      this.snav.open();
-      // console.log(this.snav);
-      // setInterval(() => this.snav.open(), 1000);
-      // this.snav.toggle();
-    }
-  }
+  // ngOnInit() {
+  //   this.snav.open();
+  //   // if (!this.mobileQuery.matches) {
+  //   //   this.snav.open();
+  //   //   // console.log(this.snav);
+  //   //   // setInterval(() => this.snav.open(), 1000);
+  //   //   // this.snav.toggle();
+  //   // }
+  // }
 
   // ngDoCheck() {
   //   if (!this.mobileQuery.matches) {
@@ -46,6 +47,9 @@ export class AppComponent {
   //     setInterval(() => this.snav.toggle(), 1000);
   //     // this.snav.toggle();
   //   }
+  // }
+  // ngDoCheck() {
+  //   this.snav.open();
   // }
 
   toggleNavHandler() {

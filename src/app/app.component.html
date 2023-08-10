@@ -7,15 +7,21 @@
     <mat-sidenav
       #snav
       [mode]="mobileQuery.matches ? 'over' : 'side'"
+      [fixedInViewport]="true"
+    >
+      <!-- <mat-sidenav
+      #snav
+      [mode]="mobileQuery.matches ? 'over' : 'side'"
       [fixedInViewport]="mobileQuery.matches"
       fixedTopGap="56"
-    >
+    > -->
       <app-navigation></app-navigation>
     </mat-sidenav>
 
     <mat-sidenav-content
       ><router-outlet></router-outlet>
-      <!-- Main dontent -->dfgdgfd
+
+      <!-- Main content -->
     </mat-sidenav-content>
   </mat-sidenav-container>
 </div>
