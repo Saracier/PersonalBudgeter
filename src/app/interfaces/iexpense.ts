@@ -1,4 +1,4 @@
-export interface IExpenses {
+export interface IExpense {
   name: string;
   value: number;
   date: Date;

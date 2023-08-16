@@ -1,0 +1,26 @@
+<div class="expense">
+  <div class="expense__input">
+    <div class="expense__entry">
+      <div class="expense__entry--name">Name:</div>
+      <div class="expense__entry--value">{{ singleExpense.name }}</div>
+    </div>
+    <div class="expense__entry">
+      <div class="expense__entry--name">Date:</div>
+      <div class="expense__entry--value">
+        {{ singleExpense.date | date : "dd/MM/yy" }}
+      </div>
+    </div>
+    <div class="expense__entry">
+      <div class="expense__entry--name">Value:</div>
+      <div class="expense__entry--value">
+        {{ singleExpense.value | currency }}
+      </div>
+    </div>
+  </div>
+  <!-- <div mat-icon-div class="expense__edit">
+    <mat-icon>more_vert</mat-icon>
+  </div> -->
+  <button mat-icon-button class="expense__edit">
+    <mat-icon>more_vert</mat-icon>
+  </button>
+</div>

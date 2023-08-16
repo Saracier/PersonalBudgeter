@@ -14,6 +14,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { HistoryComponent } from '../history/history.component';
 import { MonthComponent } from 'src/app/components/month/month.component';
+import { HistorySingleComponent } from 'src/app/components/history-single/history-single.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { MonthComponent } from 'src/app/components/month/month.component';
     HeaderComponent,
     HistoryComponent,
     MonthComponent,
+    HistorySingleComponent,
   ],
   imports: [
     CommonModule,
