@@ -1,8 +1,10 @@
 import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
+import { CommonModule } from '@angular/common';
 
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
+import { BudgeterRoutingModule } from './budgeter-routing.module';
+import { BudgeterComponent } from './budgeter.component';
+import { NavigationComponent } from '../../components/navigation/navigation.component';
+import { HeaderComponent } from '../../components/header/header.component';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatListModule } from '@angular/material/list';
@@ -12,19 +14,15 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatToolbarModule } from '@angular/material/toolbar';
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [BudgeterComponent, NavigationComponent, HeaderComponent],
   imports: [
-    BrowserModule,
-    AppRoutingModule,
-    NoopAnimationsModule,
-    BrowserAnimationsModule,
+    CommonModule,
+    BudgeterRoutingModule,
     MatToolbarModule,
     MatButtonModule,
     MatIconModule,
     MatSidenavModule,
     MatListModule,
   ],
-  providers: [],
-  bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class BudgeterModule {}
