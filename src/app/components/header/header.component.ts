@@ -13,6 +13,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MediaMatcher } from '@angular/cdk/layout';
 import { MatSidenav } from '@angular/material/sidenav';
+import { HeaderService } from 'src/app/core/services/header.service';
 
 @Component({
   selector: 'app-header',
@@ -20,11 +21,19 @@ import { MatSidenav } from '@angular/material/sidenav';
   styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent {
+  headerText: string = '';
+  headerTextSubscription = this.HeaderService.headerText.subscribe((text) => {
+    this.headerText = text;
+  });
   mobileQuery: MediaQueryList;
   private _mobileQueryListener: () => void;
   @Output() toggleNav = new EventEmitter<void>();
 
-  constructor(changeDetectorRef: ChangeDetectorRef, media: MediaMatcher) {
+  constructor(
+    changeDetectorRef: ChangeDetectorRef,
+    media: MediaMatcher,
+    private HeaderService: HeaderService
+  ) {
     this.mobileQuery = media.matchMedia('(max-width: 600px)');
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
     this.mobileQuery.addListener(this._mobileQueryListener);
@@ -50,5 +59,9 @@ export class HeaderComponent {
 
   toggleNavHandler() {
     this.toggleNav.emit();
+  }
+
+  ngOnDestroy() {
+    this.headerTextSubscription.unsubscribe();
   }
 }

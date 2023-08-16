@@ -3,6 +3,7 @@ export interface IExpense {
   value: number;
   date: Date;
   category: Category;
+  id: string;
 }
 
 enum Category {
