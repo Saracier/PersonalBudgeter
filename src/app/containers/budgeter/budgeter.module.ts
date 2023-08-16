@@ -12,9 +12,15 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { HistoryComponent } from '../history/history.component';
 
 @NgModule({
-  declarations: [BudgeterComponent, NavigationComponent, HeaderComponent],
+  declarations: [
+    BudgeterComponent,
+    NavigationComponent,
+    HeaderComponent,
+    HistoryComponent,
+  ],
   imports: [
     CommonModule,
     BudgeterRoutingModule,

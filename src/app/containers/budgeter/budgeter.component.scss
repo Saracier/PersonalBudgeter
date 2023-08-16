@@ -16,6 +16,10 @@
   z-index: 3;
 }
 
+app-header {
+  z-index: 4;
+}
+
 mat-sidenav {
   width: 300px;
 }
@@ -28,6 +32,19 @@ mat-sidenav {
 
 app-header {
   margin-left: 300px;
+}
+
+mat-sidenav-content {
+  // z-index: -1;
+  margin-top: 150px;
+  // display: transparent;
+  // position: relative;
+  // top: 300px;
+  // left: 300px;
+  background-color: red;
+  height: 3300px;
+  width: calc(100% - 300px);
+  overflow: scroll;
 }
 
 @media (max-width: 600px) {
