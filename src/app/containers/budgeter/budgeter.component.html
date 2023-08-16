@@ -1,9 +1,6 @@
 <div class="example-container" [class.example-is-mobile]="mobileQuery.matches">
   <app-header (toggleNav)="toggleNavHandler()"></app-header>
-  <mat-sidenav-container
-    class="example-sidenav-container"
-    [style.marginTop.px]="mobileQuery.matches ? 56 : 0"
-  >
+  <mat-sidenav-container class="example-sidenav-container">
     <mat-sidenav
       #snav
       [mode]="mobileQuery.matches ? 'over' : 'side'"
@@ -19,6 +16,7 @@
     </mat-sidenav>
 
     <mat-sidenav-content>
+      <app-month></app-month>
       <router-outlet></router-outlet>
       <!-- Main content -->
     </mat-sidenav-content>

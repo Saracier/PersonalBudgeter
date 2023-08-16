@@ -13,6 +13,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { HistoryComponent } from '../history/history.component';
+import { MonthComponent } from 'src/app/components/month/month.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { HistoryComponent } from '../history/history.component';
     NavigationComponent,
     HeaderComponent,
     HistoryComponent,
+    MonthComponent,
   ],
   imports: [
     CommonModule,
