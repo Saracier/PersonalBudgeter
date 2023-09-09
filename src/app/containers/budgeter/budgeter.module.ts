@@ -15,6 +15,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { HistoryComponent } from '../history/history.component';
 import { MonthComponent } from 'src/app/components/month/month.component';
 import { HistorySingleComponent } from 'src/app/components/history-single/history-single.component';
+import { FilterMonthPipe } from '../../shared/pipes/filter-month.pipe';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { HistorySingleComponent } from 'src/app/components/history-single/histor
     HistoryComponent,
     MonthComponent,
     HistorySingleComponent,
+    FilterMonthPipe,
   ],
   imports: [
     CommonModule,

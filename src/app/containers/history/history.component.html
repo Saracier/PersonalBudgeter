@@ -1,5 +1,8 @@
 <div class="history">
-  <div *ngFor="let expense of expenses" class="history__single">
+  <div
+    *ngFor="let expense of expenses | filterMonth : 8"
+    class="history__single"
+  >
     <app-history-single [singleExpense]="expense"></app-history-single>
   </div>
 </div>
