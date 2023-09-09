@@ -2,6 +2,7 @@ import {
   ChangeDetectorRef,
   Component,
   EventEmitter,
+  Input,
   Output,
 } from '@angular/core';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
@@ -13,7 +14,6 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MediaMatcher } from '@angular/cdk/layout';
 import { MatSidenav } from '@angular/material/sidenav';
-import { HeaderService } from 'src/app/core/services/header.service';
 
 @Component({
   selector: 'app-header',
@@ -21,22 +21,26 @@ import { HeaderService } from 'src/app/core/services/header.service';
   styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent {
-  headerText: string = '';
-  headerTextSubscription = this.HeaderService.headerText.subscribe((text) => {
-    this.headerText = text;
-  });
-  mobileQuery: MediaQueryList;
-  private _mobileQueryListener: () => void;
+  @Input() headerText: string | null = null;
+  @Input() set shouldDisplayBurger(value: boolean) {
+    console.log('value', value);
+    this._shouldDisplayBurger = value;
+  }
+  get shouldDisplayBurger(): boolean {
+    return this._shouldDisplayBurger;
+  }
+  _shouldDisplayBurger = false;
+  // headerTextSubscription = this.HeaderService.headerText.subscribe((text) => {
+  //   this.headerText = text;
+  // });
+  // mobileQuery: MediaQueryList;
+  // private _mobileQueryListener: () => void;
   @Output() toggleNav = new EventEmitter<void>();
 
-  constructor(
-    changeDetectorRef: ChangeDetectorRef,
-    media: MediaMatcher,
-    private HeaderService: HeaderService
-  ) {
-    this.mobileQuery = media.matchMedia('(max-width: 600px)');
-    this._mobileQueryListener = () => changeDetectorRef.detectChanges();
-    this.mobileQuery.addListener(this._mobileQueryListener);
+  constructor(changeDetectorRef: ChangeDetectorRef, media: MediaMatcher) {
+    // this.mobileQuery = media.matchMedia('(max-width: 600px)');
+    // this._mobileQueryListener = () => changeDetectorRef.detectChanges();
+    // this.mobileQuery.addListener(this._mobileQueryListener);
     // setInterval(() => console.log(this.mobileQuery), 1000);
     // setInterval(() => {
     //   if (this.mobileQuery.matches) {
@@ -48,7 +52,7 @@ export class HeaderComponent {
   }
 
   ngOnInit() {
-    if (!this.mobileQuery.matches) {
+    if (!this.shouldDisplayBurger) {
       this.toggleNav.emit();
 
       // console.log(this.snav);
@@ -62,6 +66,6 @@ export class HeaderComponent {
   }
 
   ngOnDestroy() {
-    this.headerTextSubscription.unsubscribe();
+    // this.headerTextSubscription.unsubscribe();
   }
 }

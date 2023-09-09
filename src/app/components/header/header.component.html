@@ -3,7 +3,7 @@
   <button
     mat-icon-button
     (click)="toggleNavHandler()"
-    [style.display]="mobileQuery.matches ? 'block' : 'none'"
+    [style.display]="shouldDisplayBurger ? 'block' : 'none'"
   >
     <mat-icon>menu</mat-icon>
   </button>
@@ -12,6 +12,7 @@
   </div>
   <div class="toolbar--button">
     <!-- <mat-raised-button>sfsdfsefs</mat-raised-button> -->
-    <button mat-raised-button color="primary">Dodaj wpis</button>
+    <button mat-raised-button color="accent">Dodaj wpis</button>
+    <!-- <button mat-raised-button color="primary">Dodaj wpis</button> -->
   </div>
 </mat-toolbar>

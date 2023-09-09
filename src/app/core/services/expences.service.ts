@@ -25,7 +25,7 @@ export class ExpensesService {
       id: v4(),
     },
     {
-      name: 'Kolajca z żoną',
+      name: 'Kolacja z żoną',
       value: 100,
       date: new Date(),
       category: 2,

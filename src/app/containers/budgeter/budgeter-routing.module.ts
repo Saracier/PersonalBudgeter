@@ -11,7 +11,17 @@ const routes: Routes = [
       {
         path: '',
         component: HistoryComponent,
+        data: {
+          title: 'Historia',
+        },
       },
+      // {
+      //   path: 'historia',
+      //   component: HistoryComponent,
+      //   data: {
+      //     title: 'Historia 2',
+      //   },
+      // },
     ],
   },
 ];

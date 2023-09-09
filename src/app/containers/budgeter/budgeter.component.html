@@ -1,9 +1,16 @@
-<div class="example-container" [class.example-is-mobile]="mobileQuery.matches">
-  <app-header (toggleNav)="toggleNavHandler()"></app-header>
+<div
+  class="example-container"
+  [class.example-is-mobile]="(breakpointObserver$ | async)?.matches"
+>
+  <app-header
+    [headerText]="title$ | async"
+    [shouldDisplayBurger]="(breakpointObserver$ | async)?.matches || false"
+    (toggleNav)="toggleNavHandler()"
+  ></app-header>
   <mat-sidenav-container class="example-sidenav-container">
     <mat-sidenav
       #snav
-      [mode]="mobileQuery.matches ? 'over' : 'side'"
+      [mode]="(breakpointObserver$ | async)?.matches ? 'over' : 'side'"
       [fixedInViewport]="true"
     >
       <!-- <mat-sidenav

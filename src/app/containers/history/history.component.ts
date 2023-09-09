@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { ExpensesService } from 'src/app/core/services/expences.service';
 import { IExpense } from 'src/app/interfaces/iexpense';
-import { HeaderService } from 'src/app/core/services/header.service';
 
 @Component({
   selector: 'app-history',
@@ -13,14 +12,9 @@ export class HistoryComponent {
   expensesSubscripction = this.ExpensesService.expenses.subscribe(
     (expenses) => (this.expenses = expenses)
   );
-  constructor(
-    private ExpensesService: ExpensesService,
-    private HeaderService: HeaderService
-  ) {}
+  constructor(private ExpensesService: ExpensesService) {}
 
-  ngOnInit() {
-    this.HeaderService.setHeaderText('Historia');
-  }
+  ngOnInit() {}
 
   ngOnDestroy() {
     this.expensesSubscripction.unsubscribe();
