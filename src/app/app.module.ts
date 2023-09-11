@@ -11,8 +11,11 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { CommonModule } from '@angular/common';
+// import { EditExpenseDirective } from './shared/directives/edit-expense.directive';
+import { EditExpenseComponent } from './shared/edit-expense/edit-expense.component';
+import { SharedDirectivesModule } from './shared-directives/shared-directives.module';
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, EditExpenseComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -24,6 +27,7 @@ import { CommonModule } from '@angular/common';
     MatSidenavModule,
     MatListModule,
     CommonModule,
+    SharedDirectivesModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

@@ -1,6 +1,7 @@
 import {
   ChangeDetectorRef,
   Component,
+  ComponentFactoryResolver,
   ElementRef,
   ViewChild,
 } from '@angular/core';
@@ -11,7 +12,10 @@ import {
 } from '@angular/cdk/layout';
 import { MatSidenav } from '@angular/material/sidenav';
 import { Router, ActivatedRoute, NavigationEnd } from '@angular/router';
-import { Observable, filter, map } from 'rxjs';
+import { Observable, Subscription, filter, map } from 'rxjs';
+import { EditExpenseService } from 'src/app/core/services/edit-expense.service';
+import { EditExpenseComponent } from '../../shared/edit-expense/edit-expense.component';
+import { EditExpenseDirective } from 'src/app/shared/directives/edit-expense.directive';
 
 @Component({
   selector: 'app-budgeter',
@@ -33,13 +37,30 @@ export class BudgeterComponent {
   );
   breakpointObserver$ = this.breakpointObserver.observe([Breakpoints.XSmall]);
   private _mobileQueryListener: () => void;
+  @ViewChild(EditExpenseDirective, { static: false })
+  EditExpenseDirective: EditExpenseDirective;
+  private closeDynamicComponentSub: Subscription;
+
+  editModalSubscripction: Subscription;
+  // editModalSubscripction: Subscription =
+  //   this.EditExpenseService.shouldModalBeDisplayed.subscribe(
+  //     (shouldBeDisplayed) => {
+  //       if (shouldBeDisplayed) {
+  //         this.openEditModal();
+  //       } else {
+  //         this.closeEditModal();
+  //       }
+  //     }
+  //   );
 
   constructor(
     changeDetectorRef: ChangeDetectorRef,
     media: MediaMatcher,
     private router: Router,
     private route: ActivatedRoute,
-    private breakpointObserver: BreakpointObserver
+    private breakpointObserver: BreakpointObserver,
+    private EditExpenseService: EditExpenseService,
+    private componentFactoryResolver: ComponentFactoryResolver
   ) {
     this.mobileQuery = media.matchMedia('(max-width: 600px)');
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
@@ -75,9 +96,44 @@ export class BudgeterComponent {
   //   this.snav.open();
   // }
 
+  ngOnInit() {
+    this.editModalSubscripction =
+      this.EditExpenseService.shouldModalBeDisplayed.subscribe(
+        (shouldBeDisplayed) => {
+          if (shouldBeDisplayed) {
+            this.openEditModal();
+          }
+        }
+      );
+  }
+
   toggleNavHandler() {
     this.snav.toggle();
   }
+
+  openEditModal() {
+    console.log('openEditModal works');
+    const editFactoryResolver =
+      this.componentFactoryResolver.resolveComponentFactory(
+        EditExpenseComponent
+      );
+
+    const hostViewContainerRef = this.EditExpenseDirective.viewContainerRef;
+    hostViewContainerRef.clear();
+
+    const componentRef =
+      hostViewContainerRef.createComponent(editFactoryResolver);
+
+    // componentRef.instance.message = message;
+    this.closeDynamicComponentSub = componentRef.instance.closeEvent.subscribe(
+      () => {
+        this.closeDynamicComponentSub.unsubscribe();
+        hostViewContainerRef.clear();
+      }
+    );
+  }
+
+  // private closeEditModal() {}
 
   ngOnDestroy(): void {
     this.mobileQuery.removeListener(this._mobileQueryListener);

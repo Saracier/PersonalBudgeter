@@ -16,6 +16,9 @@ import { HistoryComponent } from '../history/history.component';
 import { MonthComponent } from 'src/app/components/month/month.component';
 import { HistorySingleComponent } from 'src/app/components/history-single/history-single.component';
 import { FilterMonthPipe } from '../../shared/pipes/filter-month.pipe';
+// import { EditExpenseDirective } from '../../shared/directives/edit-expense.directive';
+// import { EditExpenseDirective } from '../../app.module';
+import { SharedDirectivesModule } from '../../shared-directives/shared-directives.module';
 
 @NgModule({
   declarations: [
@@ -35,6 +38,7 @@ import { FilterMonthPipe } from '../../shared/pipes/filter-month.pipe';
     MatIconModule,
     MatSidenavModule,
     MatListModule,
+    SharedDirectivesModule,
   ],
 })
 export class BudgeterModule {}
