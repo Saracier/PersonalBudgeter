@@ -112,7 +112,6 @@ export class BudgeterComponent {
   }
 
   openEditModal() {
-    console.log('openEditModal works');
     const editFactoryResolver =
       this.componentFactoryResolver.resolveComponentFactory(
         EditExpenseComponent
@@ -129,6 +128,7 @@ export class BudgeterComponent {
       () => {
         this.closeDynamicComponentSub.unsubscribe();
         hostViewContainerRef.clear();
+        this.EditExpenseService.expenseToEdit = null;
       }
     );
   }

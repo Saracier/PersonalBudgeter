@@ -14,6 +14,7 @@ export class HistorySingleComponent {
   constructor(private EditExpenseService: EditExpenseService) {}
 
   openEditModal() {
+    this.EditExpenseService.expenseToEdit = this.singleExpense;
     this.EditExpenseService.shouldModalBeDisplayed.next(true);
   }
 }
