@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { CurrentDateService } from 'src/app/core/services/current-date.service';
-import { months } from '../../interfaces/months';
+import { months } from '../../enums/months';
 
 @Component({
   selector: 'app-month',

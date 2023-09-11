@@ -1,6 +1,6 @@
 import { Pipe, PipeTransform } from '@angular/core';
 import { IExpense } from '../../interfaces/iexpense';
-import { months } from '../../interfaces/months';
+import { months } from '../../enums/months';
 
 @Pipe({
   name: 'filterMonth',
