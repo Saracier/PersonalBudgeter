@@ -10,4 +10,5 @@ export enum months {
   Wrzesień,
   Październik,
   Listopad,
+  Grudzień,
 }

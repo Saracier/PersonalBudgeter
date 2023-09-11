@@ -1,8 +1,16 @@
 <div class="history">
   <div
-    *ngFor="let expense of expenses | filterMonth : 8"
+    *ngFor="let expense of expenses | filterMonth : wantedMonth : wantedYear"
     class="history__single"
   >
     <app-history-single [singleExpense]="expense"></app-history-single>
+  </div>
+  <div
+    *ngIf="(expenses | filterMonth : wantedMonth : wantedYear)[0] === undefined"
+  >
+    <p>
+      Żadne wydatki w tym okresie nie zostały wprowadzone. Dodaj wydatek
+      przyciskiem "Dodaj wpis".
+    </p>
   </div>
 </div>
