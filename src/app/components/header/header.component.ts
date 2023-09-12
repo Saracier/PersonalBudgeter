@@ -14,6 +14,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MediaMatcher } from '@angular/cdk/layout';
 import { MatSidenav } from '@angular/material/sidenav';
+import { EditExpenseService } from 'src/app/core/services/edit-expense.service';
 
 @Component({
   selector: 'app-header',
@@ -37,7 +38,11 @@ export class HeaderComponent {
   // private _mobileQueryListener: () => void;
   @Output() toggleNav = new EventEmitter<void>();
 
-  constructor(changeDetectorRef: ChangeDetectorRef, media: MediaMatcher) {
+  constructor(
+    changeDetectorRef: ChangeDetectorRef,
+    media: MediaMatcher,
+    private EditExpenseService: EditExpenseService
+  ) {
     // this.mobileQuery = media.matchMedia('(max-width: 600px)');
     // this._mobileQueryListener = () => changeDetectorRef.detectChanges();
     // this.mobileQuery.addListener(this._mobileQueryListener);
@@ -63,6 +68,11 @@ export class HeaderComponent {
 
   toggleNavHandler() {
     this.toggleNav.emit();
+  }
+
+  openEditModal() {
+    this.EditExpenseService.expenseToEdit = null;
+    this.EditExpenseService.shouldModalBeDisplayed.next(true);
   }
 
   ngOnDestroy() {
