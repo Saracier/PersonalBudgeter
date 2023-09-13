@@ -2,6 +2,9 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { BudgeterComponent } from './budgeter.component';
 import { HistoryComponent } from '../history/history.component';
+import { CalendarComponent } from '../calendar/calendar.component';
+import { SettingComponent } from '../setting/setting.component';
+import { StatisticsComponent } from '../statistics/statistics.component';
 
 const routes: Routes = [
   {
@@ -15,13 +18,27 @@ const routes: Routes = [
           title: 'Historia',
         },
       },
-      // {
-      //   path: 'historia',
-      //   component: HistoryComponent,
-      //   data: {
-      //     title: 'Historia 2',
-      //   },
-      // },
+      {
+        path: 'kalendarz',
+        component: CalendarComponent,
+        data: {
+          title: 'Kalendarz',
+        },
+      },
+      {
+        path: 'ustawienia',
+        component: SettingComponent,
+        data: {
+          title: 'Ustawienia',
+        },
+      },
+      {
+        path: 'statystyki',
+        component: StatisticsComponent,
+        data: {
+          title: 'Statystyki',
+        },
+      },
     ],
   },
 ];

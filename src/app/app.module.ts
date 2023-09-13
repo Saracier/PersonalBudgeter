@@ -14,8 +14,16 @@ import { CommonModule } from '@angular/common';
 // import { EditExpenseDirective } from './shared/directives/edit-expense.directive';
 import { EditExpenseComponent } from './shared/edit-expense/edit-expense.component';
 import { SharedDirectivesModule } from './shared-directives/shared-directives.module';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { CalendarComponent } from './containers/calendar/calendar.component';
+import { SettingComponent } from './containers/setting/setting.component';
 @NgModule({
-  declarations: [AppComponent, EditExpenseComponent],
+  declarations: [
+    AppComponent,
+    EditExpenseComponent,
+    CalendarComponent,
+    SettingComponent,
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -28,6 +36,8 @@ import { SharedDirectivesModule } from './shared-directives/shared-directives.mo
     MatListModule,
     CommonModule,
     SharedDirectivesModule,
+    FormsModule,
+    ReactiveFormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
