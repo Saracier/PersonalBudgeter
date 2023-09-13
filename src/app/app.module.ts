@@ -15,8 +15,11 @@ import { CommonModule } from '@angular/common';
 import { EditExpenseComponent } from './shared/edit-expense/edit-expense.component';
 import { SharedDirectivesModule } from './shared-directives/shared-directives.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+<<<<<<< HEAD
 import { CalendarComponent } from './containers/calendar/calendar.component';
 import { SettingComponent } from './containers/setting/setting.component';
+=======
+>>>>>>> 4be0b9522b80952e9395ec8e0bc64559e86f2acf
 @NgModule({
   declarations: [
     AppComponent,

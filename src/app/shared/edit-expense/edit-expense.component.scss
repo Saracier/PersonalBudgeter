@@ -1,6 +1,6 @@
 .modal {
   z-index: 400;
-  position: absolute;
+  position: fixed;
   width: 100vw;
   height: 100vh;
   // height: 900px;
@@ -12,17 +12,83 @@
   align-items: center;
   background-color: rgba(0, 0, 0, 0.3);
   backdrop-filter: blur(10px);
+  pointer-events: auto;
 
   .info {
-    padding: 20px;
+    // padding: 20px;
     // border: 1px solid white;
     display: flex;
     justify-content: center;
     flex-direction: column;
     background-color: #f2f2f2;
+    border-radius: 4px;
 
     button {
       padding: 10px;
     }
+
+    .tag {
+      font-size: 1.8rem;
+      text-align: center;
+      padding-bottom: 20px;
+      padding: 20px;
+    }
+  }
+
+  #editTicker {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 400px;
+    padding: 20px;
+
+    div {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    span {
+      text-align: center;
+      color: red;
+    }
+
+    label {
+      padding-top: 10px;
+    }
+
+    input,
+    select,
+    textarea {
+      margin: 5px;
+      padding: 10px;
+    }
+  }
+
+  form input.ng-invalid.ng-touched {
+    border: 1px solid red;
+  }
+
+  textarea {
+    min-width: 100px;
+    max-width: 350px;
+    max-height: 300px;
+  }
+
+  .edit--buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    button {
+      margin: 20px;
+      // padding: 5px;
+      padding: 20px;
+    }
+  }
+}
+
+@media (max-width: 600px) {
+  #editTicker {
+    width: 100%;
   }
 }

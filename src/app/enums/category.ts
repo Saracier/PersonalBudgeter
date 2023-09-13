@@ -8,7 +8,7 @@ export enum Category {
   Hygiene,
   Kids,
   Entertiment,
-  Other,
   Debts,
   Saving,
+  Other,
 }
