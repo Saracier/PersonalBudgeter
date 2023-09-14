@@ -7,7 +7,7 @@
     <form [formGroup]="editForm" (ngSubmit)="onSubmit()">
       <div id="editTicker">
         <mat-form-field>
-          <mat-label for="editName"> Nazwa : </mat-label>
+          <mat-label for="editName"> Nazwa: </mat-label>
           <input
             matInput
             id="editName"
@@ -24,24 +24,25 @@
           ></mat-form-field
         >
         <mat-form-field>
-          <mat-label for="value"> Wartość : </mat-label>
+          <mat-label for="value"> Wartość: </mat-label>
           <input
             matInput
             id="value"
             type="number"
+            min="0.01"
             name="value"
             formControlName="value"
           />
-          <span
+          <mat-error
             *ngIf="
               !editForm.get('value')?.valid && editForm.get('value')?.touched
             "
-            >Wprowadadź poprawną wartość!</span
+            >Wprowadadź poprawną wartość!</mat-error
           ></mat-form-field
         >
 
         <mat-form-field>
-          <mat-label for="date"> Data : </mat-label>
+          <mat-label for="date"> Data: </mat-label>
           <!-- <input id="date" type="date" name="date" formControlName="date" /> -->
           <input matInput [matDatepicker]="picker" formControlName="date" />
           <!-- <mat-hint>MM/DD/YYYY</mat-hint> -->
@@ -59,7 +60,7 @@
         >
 
         <mat-form-field>
-          <mat-label for="category"> Kategoria :</mat-label>
+          <mat-label for="category"> Kategoria:</mat-label>
           <!-- <select id="category" name="category" formControlName="category"> -->
           <select matNativeControl required formControlName="category">
             <option value="Food">Jedzenie</option>
