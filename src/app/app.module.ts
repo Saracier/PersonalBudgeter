@@ -15,11 +15,16 @@ import { CommonModule } from '@angular/common';
 import { EditExpenseComponent } from './shared/edit-expense/edit-expense.component';
 import { SharedDirectivesModule } from './shared-directives/shared-directives.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-<<<<<<< HEAD
 import { CalendarComponent } from './containers/calendar/calendar.component';
 import { SettingComponent } from './containers/setting/setting.component';
-=======
->>>>>>> 4be0b9522b80952e9395ec8e0bc64559e86f2acf
+import {
+  MAT_FORM_FIELD_DEFAULT_OPTIONS,
+  MatFormFieldModule,
+} from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+import { MatSelectModule } from '@angular/material/select';
 @NgModule({
   declarations: [
     AppComponent,
@@ -41,8 +46,18 @@ import { SettingComponent } from './containers/setting/setting.component';
     SharedDirectivesModule,
     FormsModule,
     ReactiveFormsModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatSelectModule,
   ],
-  providers: [],
+  providers: [
+    {
+      provide: MAT_FORM_FIELD_DEFAULT_OPTIONS,
+      useValue: { appearance: 'outline' },
+    },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

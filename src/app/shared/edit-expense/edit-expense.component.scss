@@ -57,11 +57,15 @@
       padding-top: 10px;
     }
 
-    input,
-    select,
-    textarea {
-      margin: 5px;
-      padding: 10px;
+    // input,
+    // select,
+    // textarea {
+    //   margin: 5px;
+    //   padding: 10px;
+    // }
+
+    mat-form-field {
+      padding-bottom: 10px;
     }
   }
 

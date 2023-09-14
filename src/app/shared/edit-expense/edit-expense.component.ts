@@ -40,9 +40,10 @@ export class EditExpenseComponent {
         this.EditExpenseService.expenseToEdit?.value ?? null,
         Validators.required
       ),
-      date: new FormControl(dateToEdit, Validators.required),
+      date: new FormControl(dateToEdit ?? new Date(), Validators.required),
       category: new FormControl(
-        Category[this.EditExpenseService.expenseToEdit?.category!] ?? 'Food',
+        Category[this.EditExpenseService.expenseToEdit?.category!] ??
+          Category[11],
         Validators.required
       ),
     });

@@ -6,54 +6,82 @@
     <hr />
     <form [formGroup]="editForm" (ngSubmit)="onSubmit()">
       <div id="editTicker">
-        <label for="editName"> Nazwa : </label>
-        <input
-          id="editName"
-          type="text"
-          name="editName"
-          formControlName="editName"
-        />
-        <span
-          *ngIf="
-            !editForm.get('editName')?.valid &&
-            editForm.get('editName')?.touched
-          "
-          >Wprowadadź poprawną nazwę!</span
+        <mat-form-field>
+          <mat-label for="editName"> Nazwa : </mat-label>
+          <input
+            matInput
+            id="editName"
+            type="text"
+            name="editName"
+            formControlName="editName"
+          />
+          <mat-error
+            *ngIf="
+              !editForm.get('editName')?.valid &&
+              editForm.get('editName')?.touched
+            "
+            >Wprowadadź poprawną nazwę!</mat-error
+          ></mat-form-field
         >
-        <label for="value"> Wartość : </label>
-        <input id="value" type="number" name="value" formControlName="value" />
-        <span
-          *ngIf="
-            !editForm.get('value')?.valid && editForm.get('value')?.touched
-          "
-          >Wprowadadź poprawną wartość!</span
+        <mat-form-field>
+          <mat-label for="value"> Wartość : </mat-label>
+          <input
+            matInput
+            id="value"
+            type="number"
+            name="value"
+            formControlName="value"
+          />
+          <span
+            *ngIf="
+              !editForm.get('value')?.valid && editForm.get('value')?.touched
+            "
+            >Wprowadadź poprawną wartość!</span
+          ></mat-form-field
         >
-        <label for="date"> Data : </label>
-        <input id="date" type="date" name="date" formControlName="date" />
-        <span
-          *ngIf="!editForm.get('date')?.valid && editForm.get('date')?.touched"
-          >Wprowadadź poprawną wartość!</span
+
+        <mat-form-field>
+          <mat-label for="date"> Data : </mat-label>
+          <!-- <input id="date" type="date" name="date" formControlName="date" /> -->
+          <input matInput [matDatepicker]="picker" formControlName="date" />
+          <!-- <mat-hint>MM/DD/YYYY</mat-hint> -->
+          <mat-datepicker-toggle
+            matIconSuffix
+            [for]="picker"
+          ></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+          <mat-error
+            *ngIf="
+              !editForm.get('date')?.valid && editForm.get('date')?.touched
+            "
+            >Wprowadadź poprawną wartość!</mat-error
+          ></mat-form-field
         >
-        <label for="category"> Kategoria :</label>
-        <select id="category" name="category" formControlName="category">
-          <option value="Food">Jedzenie</option>
-          <option value="House">Dom</option>
-          <option value="Transport">Transport</option>
-          <option value="Telecomunication">Telekomunikacja</option>
-          <option value="HealthCare">Zdrowie</option>
-          <option value="Clothes">Ubrania</option>
-          <option value="Hygiene">Higiena</option>
-          <option value="Entertiment">Rozrywka</option>
-          <option value="Debts">Spłacanie długów</option>
-          <option value="Saving">Oszczędności</option>
-          <option value="Other">Inne</option>
-        </select>
+
+        <mat-form-field>
+          <mat-label for="category"> Kategoria :</mat-label>
+          <!-- <select id="category" name="category" formControlName="category"> -->
+          <select matNativeControl required formControlName="category">
+            <option value="Food">Jedzenie</option>
+            <option value="House">Dom</option>
+            <option value="Transport">Transport</option>
+            <option value="Telecomunication">Telekomunikacja</option>
+            <option value="HealthCare">Zdrowie</option>
+            <option value="Clothes">Ubrania</option>
+            <option value="Hygiene">Higiena</option>
+            <option value="Entertiment">Rozrywka</option>
+            <option value="Debts">Spłacanie długów</option>
+            <option value="Saving">Oszczędności</option>
+            <option value="Other">Inne</option>
+          </select></mat-form-field
+        >
       </div>
     </form>
     <div class="edit--buttons">
       <button (click)="deleteComponent()" mat-raised-button color="primary">
         Anuluj
       </button>
+      <!-- <button (click)="onSubmit()" mat-raised-button color="primary"> -->
       <button
         (click)="onSubmit()"
         mat-raised-button
