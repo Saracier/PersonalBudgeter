@@ -21,10 +21,20 @@
   // color: mat.get-color-from-palsette($my-palette, "500");
 }
 
-.logo {
+.logo--link {
   display: block;
   width: 50%;
   margin: 2rem;
+  // animation-duration: 0.3s;
+  // animation-iteration-count: 2;
+  // transform-origin: bottom;
+  // filter: invert(100%);
+}
+
+.logo--img {
+  display: block;
+  width: 100%;
+  // margin: 2rem;
   animation-duration: 0.3s;
   animation-iteration-count: 2;
   transform-origin: bottom;

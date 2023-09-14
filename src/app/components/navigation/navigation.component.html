@@ -1,13 +1,24 @@
 <div class="container--sidebar">
-  <img class="logo" src="../../../assets/pig-money.svg" alt="logo aplikacji" />
+  <a [routerLink]="['/']" class="logo--link">
+    <img
+      class="logo--img"
+      src="../../../assets/pig-money.svg"
+      alt="logo aplikacji"
+  /></a>
   <!-- <mat-nav-list> -->
   <div class="container--sidebar__links">
-    <a mat-flat-button> <mat-icon>trending_up</mat-icon>Statystyki</a>
-    <a mat-flat-button> <mat-icon>calendar_today</mat-icon> Kalendarz</a>
-    <a mat-flat-button><mat-icon>list</mat-icon>Historia</a>
+    <a mat-flat-button [routerLink]="['/']">
+      <mat-icon>trending_up</mat-icon>Statystyki</a
+    >
+    <a mat-flat-button [routerLink]="['/kalendarz']">
+      <mat-icon>calendar_today</mat-icon> Kalendarz</a
+    >
+    <a mat-flat-button [routerLink]="['/historia']"
+      ><mat-icon>list</mat-icon>Historia</a
+    >
   </div>
   <div class="container--sidebar__special">
-    <a mat-fab><mat-icon>settings</mat-icon></a>
+    <a mat-fab [routerLink]="['/ustawienia']"><mat-icon>settings</mat-icon></a>
     <a mat-fab><mat-icon>logout</mat-icon></a>
   </div>
   <!-- </mat-nav-list> -->
