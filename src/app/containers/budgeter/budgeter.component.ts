@@ -42,6 +42,8 @@ export class BudgeterComponent {
   private closeDynamicComponentSub: Subscription;
 
   editModalSubscripction: Subscription;
+  routerShowAppMonthSubscripction: Subscription;
+  shouldShowAppMonth: boolean = true;
   // editModalSubscripction: Subscription =
   //   this.EditExpenseService.shouldModalBeDisplayed.subscribe(
   //     (shouldBeDisplayed) => {
@@ -73,6 +75,15 @@ export class BudgeterComponent {
     //     // this.snav.toggle!();
     //   }
     // }, 1000);
+    router.events.subscribe((value) => {
+      if (value instanceof NavigationEnd) {
+        if (value.url === '/ustawienia') {
+          this.shouldShowAppMonth = false;
+        } else {
+          this.shouldShowAppMonth = true;
+        }
+      }
+    });
   }
 
   // ngOnInit() {
@@ -137,5 +148,8 @@ export class BudgeterComponent {
 
   ngOnDestroy(): void {
     this.mobileQuery.removeListener(this._mobileQueryListener);
+    this.closeDynamicComponentSub.unsubscribe();
+    this.editModalSubscripction.unsubscribe();
+    this.routerShowAppMonthSubscripction.unsubscribe();
   }
 }

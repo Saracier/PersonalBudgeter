@@ -23,7 +23,7 @@
     </mat-sidenav>
 
     <mat-sidenav-content>
-      <app-month></app-month>
+      <app-month *ngIf="shouldShowAppMonth"></app-month>
       <router-outlet></router-outlet>
       <!-- Main content -->
     </mat-sidenav-content>
