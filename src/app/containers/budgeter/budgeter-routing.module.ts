@@ -12,7 +12,7 @@ const routes: Routes = [
     component: BudgeterComponent,
     children: [
       {
-        path: 'historia',
+        path: '',
         component: HistoryComponent,
         data: {
           title: 'Historia',
@@ -33,7 +33,7 @@ const routes: Routes = [
         },
       },
       {
-        path: '',
+        path: 'statystyki',
         component: StatisticsComponent,
         data: {
           title: 'Statystyki',
