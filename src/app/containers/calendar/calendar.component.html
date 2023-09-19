@@ -1,1 +1,36 @@
-<p>calendar works!</p>
+<div class="calendar">
+  <ng-template class="calendar__single" #paginationElement>
+    <app-calendar-pagination
+      [monthlyExpenses]="expenses | filterMonth : wantedMonth : wantedYear"
+      (updatePagination)="updatePagination($event)"
+    ></app-calendar-pagination>
+    <app-calendar-day
+      class="single--day"
+      [displayedDays]="displayedDays"
+      [monthlyExpenses]="monthlyExpenses"
+    ></app-calendar-day>
+    <app-calendar-day
+      *ngIf="displayedDays + 1 < daysInMonth"
+      class="single--day"
+      [displayedDays]="displayedDays + 1"
+      [monthlyExpenses]="monthlyExpenses"
+    ></app-calendar-day>
+    <app-calendar-day
+      *ngIf="displayedDays + 2 < daysInMonth"
+      class="single--day"
+      [displayedDays]="displayedDays + 2"
+      [monthlyExpenses]="monthlyExpenses"
+    ></app-calendar-day>
+  </ng-template>
+  <div
+    *ngIf="
+      (expenses | filterMonth : wantedMonth : wantedYear)[0] === undefined;
+      else paginationElement
+    "
+  >
+    <p>
+      Żadne wydatki w tym okresie nie zostały wprowadzone. Dodaj wydatek
+      przyciskiem "Dodaj wpis".
+    </p>
+  </div>
+</div>
