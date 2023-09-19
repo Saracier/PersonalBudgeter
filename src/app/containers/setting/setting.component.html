@@ -190,5 +190,17 @@
         >Wprowadadź prawidłową wartość!</mat-error
       ></mat-form-field
     >
+    <div class="settings--container__comment">
+      {{ hasBeenSaved ? "Zmiany zostały zapisane" : " " }}
+    </div>
+
+    <button
+      (click)="onSubmit()"
+      mat-raised-button
+      color="primary"
+      [disabled]="!settingsForm.valid"
+    >
+      Zapisz
+    </button>
   </form>
 </div>
