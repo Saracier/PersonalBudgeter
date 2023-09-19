@@ -121,6 +121,20 @@ export class ExpensesService {
       category: Category.Entertiment,
       id: v4(),
     },
+    {
+      name: 'Zeszyt do matematyki',
+      value: 13,
+      date: new Date(2023, 8, 2),
+      category: Category.Kids,
+      id: v4(),
+    },
+    {
+      name: 'Tankowanie auta',
+      value: 150,
+      date: new Date(2023, 8, 2),
+      category: Category.Transport,
+      id: v4(),
+    },
   ];
   expenses = new BehaviorSubject(this.mockExpenses);
 }

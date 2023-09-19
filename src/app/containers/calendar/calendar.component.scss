@@ -1,0 +1,15 @@
+.calendar--error {
+  text-align: center;
+  margin-top: 40px;
+}
+
+.calendar--days {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  padding-top: 40px;
+}
+
+.calendar--days__single {
+  margin: 10px;
+}

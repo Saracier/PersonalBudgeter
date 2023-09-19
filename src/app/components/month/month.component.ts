@@ -1,4 +1,4 @@
-import { Component, OnDestroy } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { CurrentDateService } from 'src/app/core/services/current-date.service';
 import { months } from '../../enums/months';
 
@@ -7,7 +7,7 @@ import { months } from '../../enums/months';
   templateUrl: './month.component.html',
   styleUrls: ['./month.component.scss'],
 })
-export class MonthComponent implements OnDestroy {
+export class MonthComponent implements OnDestroy, OnInit {
   currentMonth = 'Lipiec';
   currentMonthNumber: number = new Date().getMonth();
   currentDateSubscripction = this.CurrentDateService.shownDate.subscribe(
@@ -16,6 +16,9 @@ export class MonthComponent implements OnDestroy {
     }
   );
   constructor(private CurrentDateService: CurrentDateService) {}
+  ngOnInit() {
+    this.updateMonth();
+  }
   subtractMonth() {
     this.CurrentDateService.subtractMonth();
     this.updateMonth();

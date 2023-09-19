@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { IExpense } from 'src/app/interfaces/iexpense';
+import { months } from 'src/app/enums/months';
 
 @Component({
   selector: 'app-calendar-day',
@@ -11,4 +12,6 @@ export class CalendarDayComponent {
   displayedDays!: number;
   @Input()
   monthlyExpenses!: IExpense[];
+  @Input() wantedMonth: number;
+  months = months;
 }

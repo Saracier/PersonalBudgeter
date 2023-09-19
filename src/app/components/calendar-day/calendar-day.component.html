@@ -1,7 +1,11 @@
-{{ displayedDays + 1 }}
-<div *ngFor="let expense of monthlyExpenses" class="calendar__single">
-  <app-calendar-single
-    *ngIf="expense.date.getDate() === displayedDays + 1"
-    [singleExpense]="expense"
-  ></app-calendar-single>
+<div class="single--day">
+  <h3 class="single--name">
+    {{ displayedDays + 1 }} {{ months[this.wantedMonth] }}
+  </h3>
+  <div *ngFor="let expense of monthlyExpenses">
+    <app-calendar-single
+      *ngIf="expense.date.getDate() === displayedDays + 1"
+      [singleExpense]="expense"
+    ></app-calendar-single>
+  </div>
 </div>

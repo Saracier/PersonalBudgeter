@@ -1,1 +1,9 @@
-<p>{{ singleExpense.name }}</p>
+<div class="expense">
+  <div class="expense--info">
+    {{ singleExpense.value | currency }}
+    {{ singleExpense.name }}
+  </div>
+  <button mat-icon-button class="expense__edit" (click)="openEditModal()">
+    <mat-icon>more_vert</mat-icon>
+  </button>
+</div>

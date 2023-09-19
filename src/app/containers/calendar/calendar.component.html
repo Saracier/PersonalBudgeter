@@ -4,29 +4,35 @@
       [monthlyExpenses]="expenses | filterMonth : wantedMonth : wantedYear"
       (updatePagination)="updatePagination($event)"
     ></app-calendar-pagination>
-    <app-calendar-day
-      class="single--day"
-      [displayedDays]="displayedDays"
-      [monthlyExpenses]="monthlyExpenses"
-    ></app-calendar-day>
-    <app-calendar-day
-      *ngIf="displayedDays + 1 < daysInMonth"
-      class="single--day"
-      [displayedDays]="displayedDays + 1"
-      [monthlyExpenses]="monthlyExpenses"
-    ></app-calendar-day>
-    <app-calendar-day
-      *ngIf="displayedDays + 2 < daysInMonth"
-      class="single--day"
-      [displayedDays]="displayedDays + 2"
-      [monthlyExpenses]="monthlyExpenses"
-    ></app-calendar-day>
+    <div class="calendar--days">
+      <app-calendar-day
+        class="calendar--days__single"
+        [displayedDays]="displayedDays"
+        [monthlyExpenses]="monthlyExpenses"
+        [wantedMonth]="wantedMonth"
+      ></app-calendar-day>
+      <app-calendar-day
+        class="calendar--days__single"
+        *ngIf="displayedDays + 1 < daysInMonth"
+        [displayedDays]="displayedDays + 1"
+        [monthlyExpenses]="monthlyExpenses"
+        [wantedMonth]="wantedMonth"
+      ></app-calendar-day>
+      <app-calendar-day
+        class="calendar--days__single"
+        *ngIf="displayedDays + 2 < daysInMonth"
+        [displayedDays]="displayedDays + 2"
+        [monthlyExpenses]="monthlyExpenses"
+        [wantedMonth]="wantedMonth"
+      ></app-calendar-day>
+    </div>
   </ng-template>
   <div
     *ngIf="
       (expenses | filterMonth : wantedMonth : wantedYear)[0] === undefined;
       else paginationElement
     "
+    class="calendar--error"
   >
     <p>
       Żadne wydatki w tym okresie nie zostały wprowadzone. Dodaj wydatek
