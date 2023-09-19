@@ -19,17 +19,26 @@ export class MonthComponent implements OnDestroy, OnInit {
   ngOnInit() {
     this.updateMonth();
   }
+
   subtractMonth() {
     this.CurrentDateService.subtractMonth();
     this.updateMonth();
   }
+
   addMonth() {
     this.CurrentDateService.addMonth();
     this.updateMonth();
   }
+
   updateMonth() {
     this.currentMonth = months[this.currentMonthNumber];
   }
+
+  setToday() {
+    this.CurrentDateService.setToday();
+    this.updateMonth();
+  }
+
   ngOnDestroy() {
     this.currentDateSubscripction.unsubscribe();
   }

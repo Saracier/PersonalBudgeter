@@ -17,4 +17,8 @@ export class CurrentDateService {
   subtractMonth() {
     this.shownDate.next(subMonths(this.shownDate.getValue(), 1));
   }
+
+  setToday() {
+    this.shownDate.next(new Date());
+  }
 }

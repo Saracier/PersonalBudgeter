@@ -2,13 +2,20 @@
   margin: 5px;
   display: flex;
   align-items: center;
+  justify-content: flex-start;
   font-size: 2rem;
-  width: 200px;
+  // width: 200px;
   // width: 100%;
   text-align: center;
-  span {
-    // display: block;
-    margin: auto;
+  .month--name {
+    display: block;
+    // margin: auto;
     width: 150px;
+  }
+
+  .month--button__today {
+    margin-left: 20px;
+    font-size: 2rem;
+    padding: 20px;
   }
 }
