@@ -8,5 +8,4 @@ import { IExpense } from 'src/app/interfaces/iexpense';
 export class EditExpenseService {
   shouldModalBeDisplayed = new BehaviorSubject(false);
   expenseToEdit: IExpense | null = null;
-  constructor() {}
 }

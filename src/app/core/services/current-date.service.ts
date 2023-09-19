@@ -8,7 +8,6 @@ import { BehaviorSubject } from 'rxjs/internal/BehaviorSubject';
 })
 export class CurrentDateService {
   shownDate = new BehaviorSubject(new Date());
-  constructor() {}
 
   addMonth() {
     this.shownDate.next(addMonths(this.shownDate.getValue(), 1));

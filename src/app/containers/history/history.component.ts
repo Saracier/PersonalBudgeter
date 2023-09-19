@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 import { ExpensesService } from 'src/app/core/services/expences.service';
 import { CurrentDateService } from 'src/app/core/services/current-date.service';
 import { IExpense } from 'src/app/interfaces/iexpense';
@@ -8,7 +8,7 @@ import { IExpense } from 'src/app/interfaces/iexpense';
   templateUrl: './history.component.html',
   styleUrls: ['./history.component.scss'],
 })
-export class HistoryComponent {
+export class HistoryComponent implements OnDestroy {
   expenses: IExpense[] = [];
   wantedMonth: number = new Date().getMonth();
   wantedYear: number = new Date().getFullYear();
@@ -25,8 +25,6 @@ export class HistoryComponent {
     private ExpensesService: ExpensesService,
     private CurrentDateService: CurrentDateService
   ) {}
-
-  ngOnInit() {}
 
   ngOnDestroy() {
     this.expensesSubscripction.unsubscribe();

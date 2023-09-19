@@ -2,7 +2,8 @@ import {
   ChangeDetectorRef,
   Component,
   ComponentFactoryResolver,
-  ElementRef,
+  OnDestroy,
+  OnInit,
   ViewChild,
 } from '@angular/core';
 import {
@@ -12,7 +13,7 @@ import {
 } from '@angular/cdk/layout';
 import { MatSidenav } from '@angular/material/sidenav';
 import { Router, ActivatedRoute, NavigationEnd } from '@angular/router';
-import { Observable, Subscription, filter, map } from 'rxjs';
+import { Observable, Subscription, map } from 'rxjs';
 import { EditExpenseService } from 'src/app/core/services/edit-expense.service';
 import { EditExpenseComponent } from '../../shared/edit-expense/edit-expense.component';
 import { EditExpenseDirective } from 'src/app/shared/directives/edit-expense.directive';
@@ -22,13 +23,13 @@ import { EditExpenseDirective } from 'src/app/shared/directives/edit-expense.dir
   templateUrl: './budgeter.component.html',
   styleUrls: ['./budgeter.component.scss'],
 })
-export class BudgeterComponent {
+export class BudgeterComponent implements OnInit, OnDestroy {
   @ViewChild('snav', { static: true }) snav!: MatSidenav;
   mobileQuery: MediaQueryList;
   title$: Observable<string | null> = this.router.events.pipe(
-    map((event) => {
+    map(() => {
       const child: ActivatedRoute | null = this.route.firstChild;
-      let title = child && child.snapshot.data['title'];
+      const title = child && child.snapshot.data['title'];
       if (title) {
         return title;
       }
@@ -43,7 +44,7 @@ export class BudgeterComponent {
 
   editModalSubscripction: Subscription;
   routerShowAppMonthSubscripction: Subscription;
-  shouldShowAppMonth: boolean = true;
+  shouldShowAppMonth = true;
   // editModalSubscripction: Subscription =
   //   this.EditExpenseService.shouldModalBeDisplayed.subscribe(
   //     (shouldBeDisplayed) => {

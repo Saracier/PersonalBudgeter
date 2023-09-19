@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { IExpense } from 'src/app/interfaces/iexpense';
 import { Category } from 'src/app/enums/category';
 import { EditExpenseService } from 'src/app/core/services/edit-expense.service';
@@ -12,7 +12,7 @@ import { v4 } from 'uuid';
   templateUrl: './edit-expense.component.html',
   styleUrls: ['./edit-expense.component.scss'],
 })
-export class EditExpenseComponent {
+export class EditExpenseComponent implements OnInit {
   @Output() closeEvent = new EventEmitter<void>();
   currentExpense: IExpense;
   editForm: FormGroup;
@@ -26,8 +26,8 @@ export class EditExpenseComponent {
     if (this.EditExpenseService.expenseToEdit) {
       this.currentExpense = this.EditExpenseService.expenseToEdit;
     }
-    const dateToEdit = this.EditExpenseService.expenseToEdit?.date!
-      ? addDays(this.EditExpenseService.expenseToEdit?.date!, 1)
+    const dateToEdit = this.EditExpenseService.expenseToEdit?.date
+      ? addDays(this.EditExpenseService.expenseToEdit?.date, 1)
           .toISOString()
           .slice(0, -14)
       : null;
@@ -42,6 +42,7 @@ export class EditExpenseComponent {
       ),
       date: new FormControl(dateToEdit ?? new Date(), Validators.required),
       category: new FormControl(
+        // eslint-disable-next-line @typescript-eslint/no-non-null-asserted-optional-chain, @typescript-eslint/no-non-null-assertion
         Category[this.EditExpenseService.expenseToEdit?.category!] ??
           Category[11],
         Validators.required

@@ -3,17 +3,11 @@ import {
   Component,
   EventEmitter,
   Input,
+  OnInit,
   Output,
 } from '@angular/core';
-import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatListModule } from '@angular/material/list';
-import { MatSidenavModule } from '@angular/material/sidenav';
-import { MatIconModule } from '@angular/material/icon';
-import { MatButtonModule } from '@angular/material/button';
-import { MatToolbarModule } from '@angular/material/toolbar';
+
 import { MediaMatcher } from '@angular/cdk/layout';
-import { MatSidenav } from '@angular/material/sidenav';
 import { EditExpenseService } from 'src/app/core/services/edit-expense.service';
 
 @Component({
@@ -21,7 +15,7 @@ import { EditExpenseService } from 'src/app/core/services/edit-expense.service';
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss'],
 })
-export class HeaderComponent {
+export class HeaderComponent implements OnInit {
   @Input() headerText: string | null = null;
   @Input() set shouldDisplayBurger(value: boolean) {
     console.log('value', value);
@@ -75,7 +69,7 @@ export class HeaderComponent {
     this.EditExpenseService.shouldModalBeDisplayed.next(true);
   }
 
-  ngOnDestroy() {
-    // this.headerTextSubscription.unsubscribe();
-  }
+  // ngOnDestroy() {
+  //   // this.headerTextSubscription.unsubscribe();
+  // }
 }
