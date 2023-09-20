@@ -44,7 +44,7 @@ export class EditExpenseComponent implements OnInit {
       category: new FormControl(
         // eslint-disable-next-line @typescript-eslint/no-non-null-asserted-optional-chain, @typescript-eslint/no-non-null-assertion
         Category[this.EditExpenseService.expenseToEdit?.category!] ??
-          Category[11],
+          Category['Other'],
         Validators.required
       ),
     });
@@ -86,6 +86,7 @@ export class EditExpenseComponent implements OnInit {
     if (event && !(event?.target as HTMLElement).classList.contains('modal')) {
       return;
     }
+    event?.preventDefault();
     if (this.EditExpenseService.expenseToEdit) {
       this.currentExpense = this.EditExpenseService.expenseToEdit;
       this.EditExpenseService.expenseToEdit = null;

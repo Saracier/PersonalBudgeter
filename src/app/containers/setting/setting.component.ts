@@ -1,6 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ExpencesSettingsService } from 'src/app/core/services/expenses-settings.service';
+import { Category } from 'src/app/enums/category';
 
 @Component({
   selector: 'app-setting',
@@ -8,6 +9,21 @@ import { ExpencesSettingsService } from 'src/app/core/services/expenses-settings
   styleUrls: ['./setting.component.scss'],
 })
 export class SettingComponent implements OnInit, OnDestroy {
+  mapEngToPl: Record<string, string> = {
+    House: 'Dom',
+    Transport: 'Transport',
+    Telecomunication: 'Telekomunikacja',
+    HealthCare: 'Opieka zdrowotna',
+    Clothes: 'Ubrania',
+    Debts: 'Spłata zadłużeń',
+    Entertiment: 'Rozrywka',
+    Food: 'Jedzenie',
+    Hygiene: 'Higiena',
+    Kids: 'Dzieci',
+    Other: 'Inne',
+    Saving: 'Oszczędności',
+  };
+  categoryEnum = Object.keys(Category);
   settingsForm: FormGroup;
   expensesSettingsSubscripction =
     this.ExpencesSettingsService.expensesSettings.subscribe(
@@ -42,6 +58,7 @@ export class SettingComponent implements OnInit, OnDestroy {
         this.expensesSettings.Hygiene,
         Validators.required
       ),
+      Kids: new FormControl(this.expensesSettings.Kids, Validators.required),
       Entertiment: new FormControl(
         this.expensesSettings.Entertiment,
         Validators.required

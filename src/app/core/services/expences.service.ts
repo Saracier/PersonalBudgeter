@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, combineLatest, map } from 'rxjs';
 import { IExpense } from 'src/app/interfaces/iexpense';
 import { Category } from 'src/app/enums/category';
 import { v4 } from 'uuid';
+import { CurrentDateService } from './current-date.service';
 
 @Injectable({
   providedIn: 'root',
@@ -137,4 +138,22 @@ export class ExpensesService {
     },
   ];
   expenses = new BehaviorSubject(this.mockExpenses);
+
+  constructor(private currentDateService: CurrentDateService) {}
+
+  filterExpenses() {
+    return combineLatest([
+      this.expenses.asObservable(),
+      this.currentDateService.shownDate.asObservable(),
+    ]).pipe(
+      map(([expenses, currentDate]) => {
+        return expenses.filter((expense) => {
+          return (
+            expense.date.getFullYear() === currentDate.getFullYear() &&
+            expense.date.getMonth() === currentDate.getMonth()
+          );
+        });
+      })
+    );
+  }
 }

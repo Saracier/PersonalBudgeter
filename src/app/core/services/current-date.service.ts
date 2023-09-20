@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
+import { BehaviorSubject } from 'rxjs/internal/BehaviorSubject';
+
 import addMonths from 'date-fns/addMonths';
 import subMonths from 'date-fns/subMonths';
-import { BehaviorSubject } from 'rxjs/internal/BehaviorSubject';
 
 @Injectable({
   providedIn: 'root',

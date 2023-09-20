@@ -1,5 +1,6 @@
 import { Routes } from '@angular/router';
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const routes: Routes = [
   {
     path: 'historia',

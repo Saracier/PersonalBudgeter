@@ -1,7 +1,7 @@
 <div class="calendar">
   <ng-template class="calendar__single" #paginationElement>
     <app-calendar-pagination
-      [monthlyExpenses]="expenses | filterMonth : wantedMonth : wantedYear"
+      [monthlyExpenses]="monthlyExpenses"
       (updatePagination)="updatePagination($event)"
     ></app-calendar-pagination>
     <div class="calendar--days">
@@ -28,10 +28,7 @@
     </div>
   </ng-template>
   <div
-    *ngIf="
-      (expenses | filterMonth : wantedMonth : wantedYear)[0] === undefined;
-      else paginationElement
-    "
+    *ngIf="monthlyExpenses.length === 0; else paginationElement"
     class="calendar--error"
   >
     <p>

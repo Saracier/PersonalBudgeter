@@ -4,192 +4,25 @@
     planowanych wydatkach. Tutaj możesz je zmienić.
   </h3>
   <form [formGroup]="settingsForm" (ngSubmit)="onSubmit()">
-    <mat-form-field>
-      <mat-label for="Food"> Jedzenie: </mat-label>
-      <input
-        matInput
-        type="number"
-        min="0.00"
-        name="Food"
-        formControlName="Food"
-      />
-      <mat-error
-        *ngIf="
-          !settingsForm.get('Food')?.valid && settingsForm.get('Food')?.touched
-        "
-        >Wprowadadź prawidłową wartość!</mat-error
-      ></mat-form-field
-    >
-    <mat-form-field>
-      <mat-label for="House"> Dom: </mat-label>
-      <input
-        matInput
-        type="number"
-        min="0.00"
-        name="House"
-        formControlName="House"
-      />
-      <mat-error
-        *ngIf="
-          !settingsForm.get('House')?.valid &&
-          settingsForm.get('House')?.touched
-        "
-        >Wprowadadź prawidłową wartość!</mat-error
-      ></mat-form-field
-    >
-    <mat-form-field>
-      <mat-label for="Transport"> Transport: </mat-label>
-      <input
-        matInput
-        type="number"
-        min="0.00"
-        name="Transport"
-        formControlName="Transport"
-      />
-      <mat-error
-        *ngIf="
-          !settingsForm.get('Transport')?.valid &&
-          settingsForm.get('Transport')?.touched
-        "
-        >Wprowadadź prawidłową wartość!</mat-error
-      ></mat-form-field
-    >
-    <mat-form-field>
-      <mat-label for="Telecomunication"> Telekomunikacja: </mat-label>
-      <input
-        matInput
-        type="number"
-        min="0.00"
-        name="Telecomunication"
-        formControlName="Telecomunication"
-      />
-      <mat-error
-        *ngIf="
-          !settingsForm.get('Telecomunication')?.valid &&
-          settingsForm.get('Telecomunication')?.touched
-        "
-        >Wprowadadź prawidłową wartość!</mat-error
-      ></mat-form-field
-    >
-    <mat-form-field>
-      <mat-label for="HealthCare"> Zdrowie: </mat-label>
-      <input
-        matInput
-        type="number"
-        min="0.00"
-        name="HealthCare"
-        formControlName="HealthCare"
-      />
-      <mat-error
-        *ngIf="
-          !settingsForm.get('HealthCare')?.valid &&
-          settingsForm.get('HealthCare')?.touched
-        "
-        >Wprowadadź prawidłową wartość!</mat-error
-      ></mat-form-field
-    >
-    <mat-form-field>
-      <mat-label for="Clothes"> Ubrania: </mat-label>
-      <input
-        matInput
-        type="number"
-        min="0.00"
-        name="Clothes"
-        formControlName="Clothes"
-      />
-      <mat-error
-        *ngIf="
-          !settingsForm.get('Clothes')?.valid &&
-          settingsForm.get('Clothes')?.touched
-        "
-        >Wprowadadź prawidłową wartość!</mat-error
-      ></mat-form-field
-    >
-    <mat-form-field>
-      <mat-label for="Hygiene"> Higiena: </mat-label>
-      <input
-        matInput
-        type="number"
-        min="0.00"
-        name="Hygiene"
-        formControlName="Hygiene"
-      />
-      <mat-error
-        *ngIf="
-          !settingsForm.get('Hygiene')?.valid &&
-          settingsForm.get('Hygiene')?.touched
-        "
-        >Wprowadadź prawidłową wartość!</mat-error
-      ></mat-form-field
-    >
-    <mat-form-field>
-      <mat-label for="Entertiment"> Rozrywka: </mat-label>
-      <input
-        matInput
-        type="number"
-        min="0.00"
-        name="Entertiment"
-        formControlName="Entertiment"
-      />
-      <mat-error
-        *ngIf="
-          !settingsForm.get('Entertiment')?.valid &&
-          settingsForm.get('Entertiment')?.touched
-        "
-        >Wprowadadź prawidłową wartość!</mat-error
-      ></mat-form-field
-    >
-    <mat-form-field>
-      <mat-label for="Debts"> Spłacanie długów: </mat-label>
-      <input
-        matInput
-        type="number"
-        min="0.00"
-        name="Debts"
-        formControlName="Debts"
-      />
-      <mat-error
-        *ngIf="
-          !settingsForm.get('Debts')?.valid &&
-          settingsForm.get('Debts')?.touched
-        "
-        >Wprowadadź prawidłową wartość!</mat-error
-      ></mat-form-field
-    >
-    <mat-form-field>
-      <mat-label for="Saving"> Oszczędności: </mat-label>
-      <input
-        matInput
-        type="number"
-        min="0.00"
-        name="Saving"
-        formControlName="Saving"
-      />
-      <mat-error
-        *ngIf="
-          !settingsForm.get('Saving')?.valid &&
-          settingsForm.get('Saving')?.touched
-        "
-        >Wprowadadź prawidłową wartość!</mat-error
-      ></mat-form-field
-    >
-    <mat-form-field>
-      <mat-label for="Other"> Inne: </mat-label>
-      <input
-        matInput
-        type="number"
-        min="0.00"
-        name="Other"
-        formControlName="Other"
-      />
-      <mat-error
-        *ngIf="
-          !settingsForm.get('Other')?.valid &&
-          settingsForm.get('Other')?.touched
-        "
-        >Wprowadadź prawidłową wartość!</mat-error
-      ></mat-form-field
-    >
+    <ng-container *ngFor="let category of categoryEnum">
+      <mat-form-field>
+        <mat-label> {{ mapEngToPl[category] }}: </mat-label>
+        <input
+          matInput
+          type="number"
+          min="0.00"
+          name="Food"
+          [formControlName]="category"
+        />
+        <mat-error
+          *ngIf="
+            !settingsForm.get(category)?.valid &&
+            settingsForm.get(category)?.touched
+          "
+          >Wprowadadź prawidłową wartość!</mat-error
+        ></mat-form-field
+      >
+    </ng-container>
     <div class="settings--container__comment">
       {{ hasBeenSaved ? "Zmiany zostały zapisane" : " " }}
     </div>

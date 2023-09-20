@@ -3,23 +3,19 @@ import {
   EventEmitter,
   Input,
   OnChanges,
-  OnDestroy,
   OnInit,
   Output,
 } from '@angular/core';
 import { IExpense } from 'src/app/interfaces/iexpense';
 import getDaysInMonth from 'date-fns/getDaysInMonth';
 import { PageEvent } from '@angular/material/paginator';
-import { CurrentDateService } from 'src/app/core/services/current-date.service';
 
 @Component({
   selector: 'app-calendar-pagination',
   templateUrl: './calendar-pagination.component.html',
   styleUrls: ['./calendar-pagination.component.scss'],
 })
-export class CalendarPaginationComponent
-  implements OnChanges, OnInit, OnDestroy
-{
+export class CalendarPaginationComponent implements OnChanges, OnInit {
   @Input()
   monthlyExpenses!: IExpense[];
   daysInMonth: number;
@@ -29,13 +25,11 @@ export class CalendarPaginationComponent
     daysInMonth: number;
     displayedDays: number;
   }>();
-  currentDateSubscripction = this.CurrentDateService.shownDate.subscribe(() => {
-    setTimeout(() => {
-      this.handlePaginationEvent();
-    }, 100);
-  });
-
-  constructor(private CurrentDateService: CurrentDateService) {}
+  // currentDateSubscripction = this.CurrentDateService.shownDate.subscribe(() => {
+  //   setTimeout(() => {
+  //     this.handlePaginationEvent();
+  //   }, 100);
+  // });
 
   ngOnInit() {
     this.updateDaysInMonth();
@@ -70,7 +64,7 @@ export class CalendarPaginationComponent
     });
   }
 
-  ngOnDestroy() {
-    this.currentDateSubscripction.unsubscribe();
-  }
+  // ngOnDestroy() {
+  //   this.currentDateSubscripction.unsubscribe();
+  // }
 }

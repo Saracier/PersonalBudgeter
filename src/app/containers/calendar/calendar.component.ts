@@ -9,21 +9,20 @@ import { IExpense } from 'src/app/interfaces/iexpense';
   styleUrls: ['./calendar.component.scss'],
 })
 export class CalendarComponent implements OnDestroy {
-  expenses: IExpense[] = [];
   wantedMonth: number = new Date().getMonth();
   wantedYear: number = new Date().getFullYear();
-  monthlyExpenses!: IExpense[];
+  monthlyExpenses: IExpense[] = [];
   daysInMonth: number;
   displayedDays: number;
-  expensesSubscripction = this.ExpensesService.expenses.subscribe(
-    (expenses) => (this.expenses = expenses)
-  );
-  currentDateSubscripction = this.CurrentDateService.shownDate.subscribe(
-    (dateFromSubscripcion) => {
-      this.wantedMonth = dateFromSubscripcion.getMonth();
-      this.wantedYear = dateFromSubscripcion.getFullYear();
+  expensesSubscripction = this.ExpensesService.filterExpenses().subscribe(
+    (expenses) => {
+      if (expenses.length === 0) return;
+      this.monthlyExpenses = expenses;
+      this.wantedMonth = expenses[0].date.getMonth();
+      this.wantedYear = expenses[0].date.getFullYear();
     }
   );
+
   constructor(
     private ExpensesService: ExpensesService,
     private CurrentDateService: CurrentDateService
@@ -42,6 +41,5 @@ export class CalendarComponent implements OnDestroy {
 
   ngOnDestroy() {
     this.expensesSubscripction.unsubscribe();
-    this.currentDateSubscripction.unsubscribe();
   }
 }
