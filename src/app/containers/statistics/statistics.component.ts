@@ -1,5 +1,4 @@
 import {
-  AfterContentInit,
   Component,
   ElementRef,
   OnDestroy,
@@ -7,14 +6,11 @@ import {
   ViewChild,
 } from '@angular/core';
 import { Chart } from 'chart.js/auto';
-import { endOfDay } from 'date-fns';
-import { Observable } from 'rxjs/internal/Observable';
 import { Category } from 'src/app/enums/category';
 import { IExpense } from 'src/app/interfaces/iexpense';
 import { ISettingsExpences } from 'src/app/interfaces/isettings-expences';
 import { ExpensesService } from 'src/app/core/services/expences.service';
 import { ExpencesSettingsService } from 'src/app/core/services/expenses-settings.service';
-import { tap } from 'rxjs/internal/operators/tap';
 
 @Component({
   selector: 'app-statistics',
@@ -22,13 +18,11 @@ import { tap } from 'rxjs/internal/operators/tap';
   styleUrls: ['./statistics.component.scss'],
 })
 export class StatisticsComponent implements OnInit, OnDestroy {
-  @ViewChild('budgetRealisationCanvas', { static: true })
-  budgetRealisationCanvas!: ElementRef;
+  @ViewChild('budgetRealisationBarCanvas', { static: true })
+  budgetRealisationBarCanvas!: ElementRef;
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   budgetRealisationChart: any;
-  // public chart: any;
-  // contextChart: any;
-  // budgetRealisationChart: object;
   categoryEnum = Object.keys(Category);
   categoryFulfillment: number[];
   monthlyExpenses: IExpense[] = [];
@@ -41,8 +35,6 @@ export class StatisticsComponent implements OnInit, OnDestroy {
         this.createChart2();
       }
       if (expenses.length === 0) return;
-      // console.log(this.contextChart);
-      // this.contextChart.reset();
     }
   );
   expensesSettingsSubscripction =
@@ -59,8 +51,6 @@ export class StatisticsComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.createChart2();
-    // const canvas: HTMLCanvasElement = this.budgetRealisationChart.nativeElement;
-    // this.contextChart = canvas.getContext('2d')!;
   }
 
   prepareData() {
@@ -85,14 +75,19 @@ export class StatisticsComponent implements OnInit, OnDestroy {
     return resultArray;
   }
 
+  shouldLegend() {
+    if (window.screen.width >= 700) {
+      return false;
+    }
+    return true;
+  }
+
   createChart2() {
-    console.log(`createChart weszło`);
-    // console.log('this.budgetRealisationChart', this.budgetRealisationChart);
     if (this.budgetRealisationChart) {
       this.budgetRealisationChart.destroy();
     }
     this.budgetRealisationChart = new Chart(
-      this.budgetRealisationCanvas.nativeElement,
+      this.budgetRealisationBarCanvas.nativeElement,
       {
         type: 'bar',
         data: {
@@ -100,7 +95,7 @@ export class StatisticsComponent implements OnInit, OnDestroy {
           datasets: [
             {
               data: this.prepareData(),
-              borderWidth: 2,
+              borderWidth: 1,
               borderSkipped: 'end',
               backgroundColor: 'green',
             },
@@ -109,19 +104,21 @@ export class StatisticsComponent implements OnInit, OnDestroy {
         options: {
           scales: {
             x: {
-              min: 10,
+              min: 0,
               max: 100,
+              ticks: {
+                stepSize: 50,
+              },
             },
           },
           indexAxis: 'y',
-          // Elements options apply to all of the options unless overridden in a dataset
-          // In this case, we are setting the border of each horizontal bar to be 2px wide
           elements: {
             bar: {
-              borderWidth: 2,
+              borderWidth: 1,
             },
           },
           responsive: true,
+          aspectRatio: 1 | 1,
           plugins: {
             legend: {
               display: false,
@@ -141,7 +138,7 @@ export class StatisticsComponent implements OnInit, OnDestroy {
 
   createChart() {
     new Chart('budgetRealisationChart', {
-      type: 'bar', //this denotes tha type of chart
+      type: 'bar',
 
       data: {
         // values on X-Axis
@@ -174,109 +171,6 @@ export class StatisticsComponent implements OnInit, OnDestroy {
     });
   }
 
-  // @ViewChild('myCanvas', { static: true }) myCanvas!: ElementRef;
-  // // @ViewChild('myCanvas')
-  // // private myCanvas: ElementRef = {} as ElementRef;
-
-  // // context: CanvasRenderingContext2D;
-
-  // ngOnInit() {
-  //   // const canvas: HTMLCanvasElement = this.myCanvas.nativeElement;
-  //   // const context = canvas.getContext('2d')!;
-  //   // // context.fillStyle = 'blue';
-  //   // this.#drawRectangle(context);
-
-  //   // this.prepareChart;
-
-  //   const canvas: HTMLCanvasElement = this.myCanvas.nativeElement;
-  //   const context = canvas.getContext('2d')!;
-  //   new Chart(canvas, {
-  //     type: 'bar',
-  //     data: {
-  //       labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
-  //       datasets: [
-  //         {
-  //           label: '# of Votes',
-  //           data: [12, 19, 3, 5, 2, 3],
-  //           borderWidth: 1,
-  //         },
-  //       ],
-  //     },
-  //     options: {
-  //       scales: {
-  //         y: {
-  //           beginAtZero: true,
-  //         },
-  //       },
-  //     },
-  //   });
-  // }
-
-  // #drawRectangle(context: CanvasRenderingContext2D) {
-  //   context.fillRect(20, 20, 100, 100);
-  //   context.strokeRect(100, 100, 200, 200);
-  // }
-
-  // prepareChart() {
-  //   const canvas: HTMLCanvasElement = this.myCanvas.nativeElement;
-  //   const context = canvas.getContext('2d')!;
-  //   // context.fillStyle = 'blue';
-  //   // this.#drawRectangle(context);
-
-  //   // const canvas = document.getElementById('myChart')! as HTMLCanvasElement;
-  //   // this.context = this.myCanvas.nativeElement.getContext('2d')!;
-  //   // this.context.fillStyle = 'blue';
-  //   // this.context.fillRect(0, 0, 300, 300);
-
-  //   // const ctx = document.getElementById('myChart') as HTMLCanvasElement;
-
-  //   this.#drawRectangle(context);
-  //   // context.fillStyle = 'blue';
-  //   context.fillRect(20, 20, 100, 100);
-  //   context.strokeRect(100, 100, 200, 200);
-  //   // new Chart(canvas, {
-  //   //   type: 'bar',
-  //   //   data: {
-  //   //     labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
-  //   //     datasets: [
-  //   //       {
-  //   //         label: '# of Votes',
-  //   //         data: [12, 19, 3, 5, 2, 3],
-  //   //         borderWidth: 1,
-  //   //       },
-  //   //     ],
-  //   //   },
-  //   //   options: {
-  //   //     scales: {
-  //   //       y: {
-  //   //         beginAtZero: true,
-  //   //       },
-  //   //     },
-  //   //   },
-  //   // });
-  //   // const data = [
-  //   //   { year: 2010, count: 10 },
-  //   //   { year: 2011, count: 20 },
-  //   //   { year: 2012, count: 15 },
-  //   //   { year: 2013, count: 25 },
-  //   //   { year: 2014, count: 22 },
-  //   //   { year: 2015, count: 30 },
-  //   //   { year: 2016, count: 28 },
-  //   // ];
-
-  //   // new Chart(canvas, {
-  //   //   type: 'bar',
-  //   //   data: {
-  //   //     labels: data.map((row) => row.year),
-  //   //     datasets: [
-  //   //       {
-  //   //         label: 'Acquisitions by year',
-  //   //         data: data.map((row) => row.count),
-  //   //       },
-  //   //     ],
-  //   //   },
-  //   // });
-  // }
   ngOnDestroy() {
     this.expensesSubscripction.unsubscribe();
     this.expensesSettingsSubscripction.unsubscribe();

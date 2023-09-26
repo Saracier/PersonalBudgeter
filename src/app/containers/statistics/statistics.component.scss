@@ -1,1 +1,24 @@
+.charts {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.charts--charts--income {
+  width: min(100%, 1500px);
+}
 
+.charts--main {
+  width: 100%;
+  display: flex;
+  height: 1000px;
+
+  .charts--realisation__bar {
+    flex-shrink: 1;
+
+    canvas {
+      width: min(100%, 750px);
+      height: 500px;
+      // aspect-ratio: 9076 / 788;
+    }
+  }
+}
