@@ -1,11 +1,12 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs/internal/BehaviorSubject';
+import { ISettingsExpences } from 'src/app/interfaces/isettings-expences';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ExpencesSettingsService {
-  mockExpensesSettings = {
+  mockExpensesSettings: ISettingsExpences = {
     Food: 400,
     House: 1100,
     Transport: 300,

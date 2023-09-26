@@ -136,6 +136,27 @@ export class ExpensesService {
       category: Category.Transport,
       id: v4(),
     },
+    {
+      name: 'Filtry do wody DAFI',
+      value: 23.99,
+      date: new Date(2023, 9, 21),
+      category: Category.Food,
+      id: v4(),
+    },
+    {
+      name: 'Filtry do wody DAFI',
+      value: 23.99,
+      date: new Date(2023, 10, 21),
+      category: Category.Food,
+      id: v4(),
+    },
+    {
+      name: 'Filtry do wody DAFI',
+      value: 23.99,
+      date: new Date(2023, 11, 21),
+      category: Category.Food,
+      id: v4(),
+    },
   ];
   expenses = new BehaviorSubject(this.mockExpenses);
 
