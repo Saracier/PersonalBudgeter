@@ -642,12 +642,12 @@ export class ExpensesService {
         date.getMonth(),
         dayExpense
       );
+
       expenseForThisIteration.date = newDateExpense;
       expenseForThisIteration.id = v4();
       expensesSingleCategory.push(expenseForThisIteration);
       valueOfCategoryCopy = valueOfCategoryCopy - expenseForThisIteration.value;
     }
-    console.log('expensesSingleCategory', expensesSingleCategory);
     return expensesSingleCategory;
   }
 
@@ -673,7 +673,6 @@ export class ExpensesService {
         );
       });
     }
-    console.log(resultArray);
     this.expenses.next(resultArray);
     // this.mockExpenses = resultArray;
     // console.log('Hello from expenses', settingsValues);

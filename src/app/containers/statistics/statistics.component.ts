@@ -36,7 +36,6 @@ export class StatisticsComponent implements OnInit, OnDestroy {
   expenceSetting: ISettingsExpences;
   expensesSubscripction = this.ExpensesService.filterExpenses().subscribe(
     (expenses) => {
-      console.log('expences weszło', expenses);
       this.monthlyExpenses = expenses;
       if (this.budgetRealisationChart) {
         this.createRealisationBarChart();
@@ -83,7 +82,6 @@ export class StatisticsComponent implements OnInit, OnDestroy {
   }
 
   prepareMonthlyExpensesData() {
-    console.log(this.expenceSetting);
     const resultArray: number[] = [];
     this.categoryEnum.forEach((enumElement, index) => {
       resultArray.push(0);
@@ -92,19 +90,18 @@ export class StatisticsComponent implements OnInit, OnDestroy {
           resultArray[index] += expense.value;
         }
       });
-      const currentEnumValueAsString = enumElement;
+      // const currentEnumValueAsString = enumElement;
 
-      resultArray[index] =
-        (resultArray[index] /
-          this.expenceSetting[
-            currentEnumValueAsString as keyof ISettingsExpences
-          ]) *
-        100;
+      // resultArray[index] =
+      //   (resultArray[index] /
+      //     this.expenceSetting[
+      //       currentEnumValueAsString as keyof ISettingsExpences
+      //     ]) *
+      //   100;
 
       // Next line rounds final value to 2 decimals. It preserves to show on the chart something like 9,20131%
-      resultArray[index] = Number(resultArray[index].toFixed(2));
+      // resultArray[index] = Number((resultArray[index]).toFixed(2));
     });
-    console.log(resultArray);
     return resultArray;
   }
 
