@@ -625,7 +625,7 @@ export class ExpensesService {
     indexCategory: number,
     date: Date
   ) {
-    const expensesSingleCategory: IExpense[] = [];
+    let expensesSingleCategory: IExpense[] = [];
     let valueOfCategoryCopy = valueOfCategory;
     while (valueOfCategoryCopy >= 0) {
       const expenseForThisIteration = Object.assign(
@@ -645,9 +645,27 @@ export class ExpensesService {
 
       expenseForThisIteration.date = newDateExpense;
       expenseForThisIteration.id = v4();
-      expensesSingleCategory.push(expenseForThisIteration);
+
       valueOfCategoryCopy = valueOfCategoryCopy - expenseForThisIteration.value;
+
+      if (valueOfCategoryCopy < 0) continue;
+
+      expensesSingleCategory.push(expenseForThisIteration);
     }
+
+    if (date.getMonth() === new Date().getMonth()) {
+      console.log(expensesSingleCategory);
+      expensesSingleCategory = expensesSingleCategory.filter(
+        (signleExpense) => {
+          if (signleExpense.date.getDate() > new Date().getDate()) {
+            return false;
+          }
+          return true;
+        }
+      );
+      console.log(expensesSingleCategory);
+    }
+
     return expensesSingleCategory;
   }
 
