@@ -22,10 +22,14 @@ export class StatisticsComponent implements OnInit, OnDestroy {
   budgetRealisationBarCanvas!: ElementRef;
   @ViewChild('budgetIncomeCanvas', { static: true })
   budgetIncomeCanvas!: ElementRef;
+  @ViewChild('budgetCategoryDonutCanvas', { static: true })
+  budgetCategoryDonutCanvas!: ElementRef;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   budgetRealisationChart: any;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   budgetIncomeChart: any;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  budgetCategoryChart: any;
   categoryEnum = Object.keys(Category);
   categoryFulfillment: number[];
   monthlyExpenses: IExpense[] = [];
@@ -39,6 +43,9 @@ export class StatisticsComponent implements OnInit, OnDestroy {
       }
       if (this.budgetIncomeChart) {
         this.createIncomeBarChart();
+      }
+      if (this.budgetIncomeChart) {
+        this.createCategoryDonutChart();
       }
       if (expenses.length === 0) return;
     }
@@ -58,6 +65,7 @@ export class StatisticsComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.createRealisationBarChart();
     this.createIncomeBarChart();
+    this.createCategoryDonutChart();
   }
 
   prepareDataIncomeBar() {
@@ -118,7 +126,6 @@ export class StatisticsComponent implements OnInit, OnDestroy {
         datasets: [
           {
             data: this.prepareDataIncomeBar(),
-            // data: this.prepareMonthlyExpensesData(),
             borderWidth: 1,
             borderSkipped: 'end',
             backgroundColor: 'green',
@@ -133,6 +140,9 @@ export class StatisticsComponent implements OnInit, OnDestroy {
             ticks: {
               stepSize: 50,
             },
+          },
+          y: {
+            beginAtZero: true,
           },
         },
         indexAxis: 'y',
@@ -157,6 +167,57 @@ export class StatisticsComponent implements OnInit, OnDestroy {
         },
       },
     });
+  }
+
+  createCategoryDonutChart() {
+    if (this.budgetCategoryChart) {
+      this.budgetCategoryChart.destroy();
+    }
+    this.budgetCategoryChart = new Chart(
+      this.budgetCategoryDonutCanvas.nativeElement,
+      {
+        type: 'doughnut',
+        data: {
+          labels: this.categoryEnum,
+          datasets: [
+            {
+              label: 'Udział w wydatkach',
+              data: this.prepareMonthlyExpensesData(),
+              backgroundColor: [
+                'rgb(255, 99, 132)',
+                'rgb(162, 86, 162)',
+                'rgb(54, 162, 235)',
+                'rgb(255, 205, 86)',
+                'rgb(255, 86, 205)',
+                'rgb(86, 162, 86)',
+                'rgb(235, 127, 54)',
+                'rgb(99, 255, 222)',
+                'rgb(80,80,80)',
+                'rgb(144, 199, 255)',
+                'rgb(210, 255, 99)',
+                'rgb(162, 124, 86)',
+              ],
+              hoverOffset: 4,
+            },
+          ],
+        },
+        options: {
+          responsive: true,
+          plugins: {
+            legend: {
+              position: 'top',
+            },
+            title: {
+              display: true,
+              text: 'Udział kategorii w wydatkach',
+              font: {
+                size: 22,
+              },
+            },
+          },
+        },
+      }
+    );
   }
 
   createRealisationBarChart() {
@@ -186,6 +247,9 @@ export class StatisticsComponent implements OnInit, OnDestroy {
               ticks: {
                 stepSize: 50,
               },
+            },
+            y: {
+              beginAtZero: true,
             },
           },
           indexAxis: 'y',

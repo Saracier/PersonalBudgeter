@@ -18,9 +18,14 @@
   display: flex;
   padding-top: 40px;
   // height: 1000px;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
 
-  .charts--realisation__bar {
+  .charts--realisation__bar,
+  .charts--category__donut {
     flex-shrink: 1;
+    padding-bottom: 40px;
 
     canvas {
       width: min(100%, 750px);
