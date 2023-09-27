@@ -20,9 +20,12 @@ import { ExpencesSettingsService } from 'src/app/core/services/expenses-settings
 export class StatisticsComponent implements OnInit, OnDestroy {
   @ViewChild('budgetRealisationBarCanvas', { static: true })
   budgetRealisationBarCanvas!: ElementRef;
-
+  @ViewChild('budgetIncomeCanvas', { static: true })
+  budgetIncomeCanvas!: ElementRef;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   budgetRealisationChart: any;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  budgetIncomeChart: any;
   categoryEnum = Object.keys(Category);
   categoryFulfillment: number[];
   monthlyExpenses: IExpense[] = [];
@@ -32,7 +35,10 @@ export class StatisticsComponent implements OnInit, OnDestroy {
       console.log('expences weszło', expenses);
       this.monthlyExpenses = expenses;
       if (this.budgetRealisationChart) {
-        this.createChart2();
+        this.createRealisationBarChart();
+      }
+      if (this.budgetIncomeChart) {
+        this.createIncomeBarChart();
       }
       if (expenses.length === 0) return;
     }
@@ -50,10 +56,26 @@ export class StatisticsComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
-    this.createChart2();
+    this.createRealisationBarChart();
+    this.createIncomeBarChart();
   }
 
-  prepareData() {
+  prepareDataIncomeBar() {
+    let sumExpenses = 0;
+    let sumIncome = 0;
+    this.monthlyExpenses.forEach((element) => {
+      sumExpenses += element.value;
+    });
+    Object.keys(this.expenceSetting).forEach((key) => {
+      sumIncome += this.expenceSetting[key as keyof ISettingsExpences];
+    });
+    let percentageFulfillment = (sumExpenses / sumIncome) * 100;
+    percentageFulfillment = Number(percentageFulfillment.toFixed(2));
+    return [percentageFulfillment];
+  }
+
+  prepareMonthlyExpensesData() {
+    console.log(this.expenceSetting);
     const resultArray: number[] = [];
     this.categoryEnum.forEach((enumElement, index) => {
       resultArray.push(0);
@@ -78,14 +100,66 @@ export class StatisticsComponent implements OnInit, OnDestroy {
     return resultArray;
   }
 
-  shouldLegend() {
+  shouldDisplayLegend() {
     if (window.screen.width >= 700) {
       return false;
     }
     return true;
   }
 
-  createChart2() {
+  createIncomeBarChart() {
+    if (this.budgetIncomeChart) {
+      this.budgetIncomeChart.destroy();
+    }
+    this.budgetIncomeChart = new Chart(this.budgetIncomeCanvas.nativeElement, {
+      type: 'bar',
+      data: {
+        labels: [''],
+        datasets: [
+          {
+            data: this.prepareDataIncomeBar(),
+            // data: this.prepareMonthlyExpensesData(),
+            borderWidth: 1,
+            borderSkipped: 'end',
+            backgroundColor: 'green',
+          },
+        ],
+      },
+      options: {
+        scales: {
+          x: {
+            min: 0,
+            max: 100,
+            ticks: {
+              stepSize: 50,
+            },
+          },
+        },
+        indexAxis: 'y',
+        elements: {
+          bar: {
+            borderWidth: 1,
+          },
+        },
+        responsive: false,
+        aspectRatio: 1 | 3,
+        plugins: {
+          legend: {
+            display: false,
+          },
+          title: {
+            display: true,
+            text: 'Procent wydanego przychodu',
+            font: {
+              size: 22,
+            },
+          },
+        },
+      },
+    });
+  }
+
+  createRealisationBarChart() {
     if (this.budgetRealisationChart) {
       this.budgetRealisationChart.destroy();
     }
@@ -97,7 +171,7 @@ export class StatisticsComponent implements OnInit, OnDestroy {
           labels: this.categoryEnum,
           datasets: [
             {
-              data: this.prepareData(),
+              data: this.prepareMonthlyExpensesData(),
               borderWidth: 1,
               borderSkipped: 'end',
               backgroundColor: 'green',
@@ -128,7 +202,7 @@ export class StatisticsComponent implements OnInit, OnDestroy {
             },
             title: {
               display: true,
-              text: 'Chart.js Horizontal Bar Chart',
+              text: 'Stopień realizacji budżetu',
               font: {
                 size: 22,
               },
@@ -137,41 +211,6 @@ export class StatisticsComponent implements OnInit, OnDestroy {
         },
       }
     );
-  }
-
-  createChart() {
-    new Chart('budgetRealisationChart', {
-      type: 'bar',
-
-      data: {
-        // values on X-Axis
-        labels: [
-          '2022-05-10',
-          '2022-05-11',
-          '2022-05-12',
-          '2022-05-13',
-          '2022-05-14',
-          '2022-05-15',
-          '2022-05-16',
-          '2022-05-17',
-        ],
-        datasets: [
-          {
-            label: 'Sales',
-            data: ['467', '576', '572', '79', '92', '574', '573', '576'],
-            backgroundColor: 'blue',
-          },
-          {
-            label: 'Profit',
-            data: ['542', '542', '536', '327', '17', '0.00', '538', '541'],
-            backgroundColor: 'limegreen',
-          },
-        ],
-      },
-      options: {
-        aspectRatio: 2.5,
-      },
-    });
   }
 
   ngOnDestroy() {
