@@ -16,6 +16,7 @@ export class CurrentDateService {
   }
 
   subtractMonth() {
+    console.log(subMonths(this.shownDate.getValue(), 1));
     this.shownDate.next(subMonths(this.shownDate.getValue(), 1));
   }
 
