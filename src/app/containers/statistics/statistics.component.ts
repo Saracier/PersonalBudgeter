@@ -70,6 +70,9 @@ export class StatisticsComponent implements OnInit, OnDestroy {
             currentEnumValueAsString as keyof ISettingsExpences
           ]) *
         100;
+
+      // Next line rounds final value to 2 decimals. It preserves to show on the chart something like 9,20131%
+      resultArray[index] = Number(resultArray[index].toFixed(2));
     });
     console.log(resultArray);
     return resultArray;
