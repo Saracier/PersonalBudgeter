@@ -138,7 +138,6 @@ export class BudgeterComponent implements OnInit, OnDestroy {
     // componentRef.instance.message = message;
     this.closeDynamicComponentSub = componentRef.instance.closeEvent.subscribe(
       () => {
-        console.log('elo elo');
         this.closeDynamicComponentSub.unsubscribe();
         hostViewContainerRef.clear();
         this.EditExpenseService.expenseToEdit = null;

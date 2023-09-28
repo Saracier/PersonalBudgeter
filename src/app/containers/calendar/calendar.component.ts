@@ -33,7 +33,6 @@ export class CalendarComponent implements OnDestroy {
     daysInMonth: number;
     displayedDays: number;
   }) {
-    console.log('paginationData w calendar', paginationData);
     this.monthlyExpenses = paginationData.monthlyExpenses;
     this.daysInMonth = paginationData.daysInMonth;
     this.displayedDays = paginationData.displayedDays;

@@ -18,7 +18,6 @@ import { EditExpenseService } from 'src/app/core/services/edit-expense.service';
 export class HeaderComponent implements OnInit {
   @Input() headerText: string | null = null;
   @Input() set shouldDisplayBurger(value: boolean) {
-    console.log('value', value);
     this._shouldDisplayBurger = value;
   }
   get shouldDisplayBurger(): boolean {

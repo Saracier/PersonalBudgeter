@@ -12,11 +12,9 @@ export class CurrentDateService {
 
   addMonth() {
     this.shownDate.next(addMonths(this.shownDate.getValue(), 1));
-    console.log(addMonths(this.shownDate.getValue(), 1));
   }
 
   subtractMonth() {
-    console.log(subMonths(this.shownDate.getValue(), 1));
     this.shownDate.next(subMonths(this.shownDate.getValue(), 1));
   }
 
