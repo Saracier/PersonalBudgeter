@@ -55,6 +55,20 @@ export class StatisticsComponent implements OnInit, OnDestroy {
         this.expenceSetting = expenceSetting;
       }
     );
+  mapEngToPl = {
+    House: 'Dom',
+    Transport: 'Transport',
+    Telecomunication: 'Telekomunikacja',
+    HealthCare: 'Opieka zdrowotna',
+    Clothes: 'Ubrania',
+    Debts: 'Spłata zadłużeń',
+    Entertiment: 'Rozrywka',
+    Food: 'Jedzenie',
+    Hygiene: 'Higiena',
+    Kids: 'Dzieci',
+    Other: 'Inne',
+    Saving: 'Oszczędności',
+  };
 
   constructor(
     private ExpensesService: ExpensesService,
@@ -65,6 +79,12 @@ export class StatisticsComponent implements OnInit, OnDestroy {
     this.createRealisationBarChart();
     this.createIncomeBarChart();
     this.createCategoryDonutChart();
+  }
+
+  prepareLabels() {
+    return this.categoryEnum.map((name) => {
+      return this.mapEngToPl[name as keyof ISettingsExpences];
+    });
   }
 
   prepareDataIncomeBar() {
@@ -175,7 +195,7 @@ export class StatisticsComponent implements OnInit, OnDestroy {
       {
         type: 'doughnut',
         data: {
-          labels: this.categoryEnum,
+          labels: this.prepareLabels(),
           datasets: [
             {
               label: 'Udział w wydatkach',
@@ -226,7 +246,7 @@ export class StatisticsComponent implements OnInit, OnDestroy {
       {
         type: 'bar',
         data: {
-          labels: this.categoryEnum,
+          labels: this.prepareLabels(),
           datasets: [
             {
               data: this.prepareMonthlyExpensesData(),
