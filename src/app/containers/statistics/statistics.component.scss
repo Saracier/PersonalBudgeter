@@ -5,10 +5,12 @@
   align-items: center;
 }
 .charts--income {
-  width: min(100%, 1500px);
+  // width: min(100%, 1500px);
+  width: min(100%, 750px);
+  // height: 250px;
 
   canvas {
-    height: 50px;
+    height: 150px;
     width: 100%;
   }
 }

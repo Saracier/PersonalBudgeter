@@ -155,7 +155,7 @@ export class StatisticsComponent implements OnInit, OnDestroy {
             min: 0,
             max: 100,
             ticks: {
-              stepSize: 50,
+              stepSize: 10,
             },
           },
           y: {
@@ -168,11 +168,12 @@ export class StatisticsComponent implements OnInit, OnDestroy {
             borderWidth: 1,
           },
         },
-        responsive: false,
+        responsive: true,
         aspectRatio: 1 | 3,
         plugins: {
           legend: {
             display: false,
+            // position: 'top',
           },
           title: {
             display: true,
