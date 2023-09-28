@@ -50,6 +50,14 @@
 .container--sidebar__links {
   display: flex;
   flex-direction: column;
+
+  mat-icon {
+    font-size: 2rem;
+    overflow: visible;
+    margin-top: -10px;
+    margin-right: 15px;
+  }
+
   a {
     margin: 20px;
     font-size: 2rem;
