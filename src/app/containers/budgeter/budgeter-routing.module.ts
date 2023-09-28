@@ -12,14 +12,14 @@ const routes: Routes = [
     component: BudgeterComponent,
     children: [
       {
-        path: '',
+        path: 'Historia',
         component: HistoryComponent,
         data: {
           title: 'Historia',
         },
       },
       {
-        path: 'kalendarz',
+        path: '',
         component: CalendarComponent,
         data: {
           title: 'Kalendarz',
