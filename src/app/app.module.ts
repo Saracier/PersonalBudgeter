@@ -15,7 +15,6 @@ import { CommonModule } from '@angular/common';
 import { EditExpenseComponent } from './shared/edit-expense/edit-expense.component';
 import { SharedDirectivesModule } from './shared-directives/shared-directives.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { SettingComponent } from './containers/setting/setting.component';
 import {
   MAT_FORM_FIELD_DEFAULT_OPTIONS,
   MatFormFieldModule,
@@ -25,7 +24,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatSelectModule } from '@angular/material/select';
 @NgModule({
-  declarations: [AppComponent, EditExpenseComponent, SettingComponent],
+  declarations: [AppComponent, EditExpenseComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,

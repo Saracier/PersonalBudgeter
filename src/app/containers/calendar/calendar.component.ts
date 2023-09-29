@@ -40,12 +40,6 @@ export class CalendarComponent implements OnDestroy {
     this.daysInMonth = paginationData.daysInMonth;
     this.displayedDays = paginationData.displayedDays;
   }
-
-  // eslint-disable-next-line @angular-eslint/use-lifecycle-interface
-  ngDoCheck() {
-    console.log(this.monthlyExpenses);
-  }
-
   ngOnDestroy() {
     this.expensesSubscripction.unsubscribe();
   }

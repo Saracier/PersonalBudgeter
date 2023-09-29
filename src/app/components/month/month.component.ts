@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { CurrentDateService } from 'src/app/core/services/current-date.service';
 import { months } from '../../enums/months';
-import { Route, Router } from '@angular/router';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-month',

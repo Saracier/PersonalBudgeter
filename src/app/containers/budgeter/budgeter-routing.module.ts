@@ -1,9 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { BudgeterComponent } from './budgeter.component';
-import { HistoryComponent } from '../history/history.component';
-import { CalendarComponent } from '../calendar/calendar.component';
-import { SettingComponent } from '../setting/setting.component';
+// import { HistoryComponent } from '../history/history.component';
 import { StatisticsComponent } from '../statistics/statistics.component';
 
 const routes: Routes = [
@@ -13,27 +11,35 @@ const routes: Routes = [
     children: [
       {
         path: 'Historia',
-        component: HistoryComponent,
+        loadChildren: () =>
+          import('../history/history.module').then((m) => m.HistoryModule),
+        // component: HistoryComponent,
         data: {
           title: 'Historia',
         },
       },
       {
         path: '',
-        component: CalendarComponent,
+        loadChildren: () =>
+          import('../calendar/calendar.module').then((m) => m.CalendarModule),
         data: {
           title: 'Kalendarz',
         },
       },
       {
         path: 'ustawienia',
-        component: SettingComponent,
+        loadChildren: () =>
+          import('../setting/settings.module').then((m) => m.SettingsModule),
         data: {
           title: 'Ustawienia',
         },
       },
       {
         path: 'statystyki',
+        loadChildren: () =>
+          import('../statistics/statistics.module').then(
+            (m) => m.StatisticsModule
+          ),
         component: StatisticsComponent,
         data: {
           title: 'Statystyki',
