@@ -1,6 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { CurrentDateService } from 'src/app/core/services/current-date.service';
 import { months } from '../../enums/months';
+import { Route, Router } from '@angular/router';
 
 @Component({
   selector: 'app-month',
@@ -15,7 +16,10 @@ export class MonthComponent implements OnDestroy, OnInit {
       this.currentMonthNumber = dateFromSubscripcion.getMonth();
     }
   );
-  constructor(private CurrentDateService: CurrentDateService) {}
+  constructor(
+    private CurrentDateService: CurrentDateService,
+    private router: Router
+  ) {}
   ngOnInit() {
     this.updateMonth();
   }
@@ -37,6 +41,9 @@ export class MonthComponent implements OnDestroy, OnInit {
   setToday() {
     this.CurrentDateService.setToday();
     this.updateMonth();
+    if (this.router.url === '/') {
+      this.CurrentDateService.goToToday();
+    }
   }
 
   ngOnDestroy() {

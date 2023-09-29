@@ -5,10 +5,12 @@ import {
   OnChanges,
   OnInit,
   Output,
+  ViewChild,
 } from '@angular/core';
 import { IExpense } from 'src/app/interfaces/iexpense';
 import getDaysInMonth from 'date-fns/getDaysInMonth';
-import { PageEvent } from '@angular/material/paginator';
+import { MatPaginator, PageEvent } from '@angular/material/paginator';
+import { CurrentDateService } from 'src/app/core/services/current-date.service';
 
 @Component({
   selector: 'app-calendar-pagination',
@@ -25,11 +27,13 @@ export class CalendarPaginationComponent implements OnChanges, OnInit {
     daysInMonth: number;
     displayedDays: number;
   }>();
-  // currentDateSubscripction = this.CurrentDateService.shownDate.subscribe(() => {
-  //   setTimeout(() => {
-  //     this.handlePaginationEvent();
-  //   }, 100);
-  // });
+  @ViewChild(MatPaginator) paginator: MatPaginator;
+  currentDateSubscripction =
+    this.CurrentDateService.goToTodayCalendar.subscribe(() => {
+      this.goToToday();
+    });
+
+  constructor(private CurrentDateService: CurrentDateService) {}
 
   ngOnInit() {
     this.updateDaysInMonth();
@@ -53,10 +57,23 @@ export class CalendarPaginationComponent implements OnChanges, OnInit {
     this.daysInMonth = getDaysInMonth(this.monthlyExpenses[0].date);
   }
 
+  goToToday() {
+    this.paginator.firstPage();
+    const clicksNextPageButton = Math.floor(new Date().getDate() / 3);
+    console.log(clicksNextPageButton);
+    for (let i = 0; i < clicksNextPageButton; i++) {
+      this.paginator.nextPage();
+    }
+  }
+
   handlePaginationEvent(event?: PageEvent) {
     if (event) {
       this.displayedDays = event.pageSize * event.pageIndex;
     }
+    // if (event?.pageIndex && event?.pageIndex < 3) {
+    //   this.paginator.nextPage();
+    // }
+    console.log(event);
     this.updatePagination.emit({
       monthlyExpenses: this.monthlyExpenses,
       daysInMonth: this.daysInMonth,
