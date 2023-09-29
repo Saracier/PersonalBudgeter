@@ -26,7 +26,7 @@
           ></mat-form-field
         >
         <mat-form-field>
-          <mat-label for="value"> Wartość: </mat-label>
+          <mat-label for="value"> Kwota: </mat-label>
           <input
             matInput
             id="value"
@@ -39,7 +39,7 @@
             *ngIf="
               !editForm.get('value')?.valid && editForm.get('value')?.touched
             "
-            >Wprowadadź poprawną wartość!</mat-error
+            >Wprowadadź poprawną kwotę!</mat-error
           ></mat-form-field
         >
 
@@ -57,7 +57,7 @@
             *ngIf="
               !editForm.get('date')?.valid && editForm.get('date')?.touched
             "
-            >Wprowadadź poprawną wartość!</mat-error
+            >Wprowadadź poprawną Datę!</mat-error
           ></mat-form-field
         >
 
