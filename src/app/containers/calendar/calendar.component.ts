@@ -16,7 +16,10 @@ export class CalendarComponent implements OnDestroy {
   displayedDays: number;
   expensesSubscripction = this.ExpensesService.filterExpenses().subscribe(
     (expenses) => {
-      if (expenses.length === 0) return;
+      if (expenses.length === 0) {
+        this.monthlyExpenses = [];
+        return;
+      }
       this.monthlyExpenses = expenses;
       this.wantedMonth = expenses[0].date.getMonth();
       this.wantedYear = expenses[0].date.getFullYear();
@@ -36,6 +39,11 @@ export class CalendarComponent implements OnDestroy {
     this.monthlyExpenses = paginationData.monthlyExpenses;
     this.daysInMonth = paginationData.daysInMonth;
     this.displayedDays = paginationData.displayedDays;
+  }
+
+  // eslint-disable-next-line @angular-eslint/use-lifecycle-interface
+  ngDoCheck() {
+    console.log(this.monthlyExpenses);
   }
 
   ngOnDestroy() {
