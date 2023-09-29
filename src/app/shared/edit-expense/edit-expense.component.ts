@@ -34,11 +34,11 @@ export class EditExpenseComponent implements OnInit {
     this.editForm = new FormGroup({
       editName: new FormControl(
         this.EditExpenseService.expenseToEdit?.name ?? null,
-        Validators.required
+        [Validators.required, this.checkIfSpaces.bind(this)]
       ),
       value: new FormControl(
         this.EditExpenseService.expenseToEdit?.value ?? null,
-        Validators.required
+        [Validators.required, this.checkIfMoreThanZero.bind(this)]
       ),
       date: new FormControl(dateToEdit ?? new Date(), Validators.required),
       category: new FormControl(
@@ -48,6 +48,21 @@ export class EditExpenseComponent implements OnInit {
         Validators.required
       ),
     });
+  }
+
+  checkIfSpaces(control: FormControl): { [s: string]: boolean } | null {
+    if (!control.value) return null;
+    if (control.value.trim().length <= 0) {
+      return { checkIfSpaces: true };
+    }
+    return null;
+  }
+
+  checkIfMoreThanZero(control: FormControl): { [s: string]: boolean } | null {
+    if (control.value <= 0) {
+      return { checkIfMoreThanZero: true };
+    }
+    return null;
   }
 
   onSubmit() {
