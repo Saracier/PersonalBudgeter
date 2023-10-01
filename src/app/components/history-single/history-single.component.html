@@ -6,13 +6,13 @@
       </div>
     </div>
     <div class="expense__entry">
-      <div class="expense__entry--value">
-        {{ singleExpense.date | date : "dd/MM/yy" }}
+      <div class="expense__entry--value expense__entry--currency">
+        {{ singleExpense.value | currency }}
       </div>
     </div>
     <div class="expense__entry">
       <div class="expense__entry--value">
-        {{ singleExpense.value | currency }}
+        {{ singleExpense.date | date : "dd/MM/yy" }}
       </div>
     </div>
   </div>

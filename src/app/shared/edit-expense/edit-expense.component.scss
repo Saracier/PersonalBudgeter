@@ -22,6 +22,7 @@
     flex-direction: column;
     background-color: #f2f2f2;
     border-radius: 4px;
+    // margin: 0px 5px 0px 5px;
 
     button {
       padding: 10px;
@@ -92,7 +93,13 @@
 }
 
 @media (max-width: 600px) {
-  #editTicker {
-    width: 100%;
+  .modal {
+    .info {
+      width: 90vw;
+    }
+
+    #editTicker {
+      width: 100%;
+    }
   }
 }

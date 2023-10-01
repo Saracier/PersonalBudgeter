@@ -14,8 +14,11 @@
     padding-left: 10px;
     // text-align: center;
 
-    p {
-      text-align: center;
+    .expense--currency {
+      color: #008000;
+      font-weight: bold;
+      font-style: italic;
+      margin-right: 5px;
     }
   }
 
