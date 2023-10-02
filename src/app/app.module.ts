@@ -23,8 +23,21 @@ import { MatInputModule } from '@angular/material/input';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatSelectModule } from '@angular/material/select';
+import { NavigationComponent } from './components/navigation/navigation.component';
+import { HeaderComponent } from './components/header/header.component';
+import { MonthComponent } from './components/month/month.component';
+import { FilterMonthPipe } from './shared/pipes/filter-month.pipe';
+import { MatPaginatorModule } from '@angular/material/paginator';
+
 @NgModule({
-  declarations: [AppComponent, EditExpenseComponent],
+  declarations: [
+    AppComponent,
+    EditExpenseComponent,
+    NavigationComponent,
+    HeaderComponent,
+    MonthComponent,
+    FilterMonthPipe,
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -44,6 +57,7 @@ import { MatSelectModule } from '@angular/material/select';
     MatDatepickerModule,
     MatNativeDateModule,
     MatSelectModule,
+    MatPaginatorModule,
   ],
   providers: [
     {
