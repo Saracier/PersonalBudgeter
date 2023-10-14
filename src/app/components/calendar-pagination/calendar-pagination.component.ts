@@ -70,9 +70,6 @@ export class CalendarPaginationComponent implements OnChanges, OnInit {
     if (event) {
       this.displayedDays = event.pageSize * event.pageIndex;
     }
-    // if (event?.pageIndex && event?.pageIndex < 3) {
-    //   this.paginator.nextPage();
-    // }
     console.log(event);
     this.updatePagination.emit({
       monthlyExpenses: this.monthlyExpenses,
@@ -80,8 +77,4 @@ export class CalendarPaginationComponent implements OnChanges, OnInit {
       displayedDays: this.displayedDays,
     });
   }
-
-  // ngOnDestroy() {
-  //   this.currentDateSubscripction.unsubscribe();
-  // }
 }

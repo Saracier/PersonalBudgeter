@@ -1,6 +1,5 @@
 import { Component, OnDestroy } from '@angular/core';
 import { ExpensesService } from 'src/app/core/services/expences.service';
-import { CurrentDateService } from 'src/app/core/services/current-date.service';
 import { IExpense } from 'src/app/interfaces/iexpense';
 
 @Component({
@@ -26,10 +25,7 @@ export class CalendarComponent implements OnDestroy {
     }
   );
 
-  constructor(
-    private ExpensesService: ExpensesService,
-    private CurrentDateService: CurrentDateService
-  ) {}
+  constructor(private ExpensesService: ExpensesService) {}
 
   updatePagination(paginationData: {
     monthlyExpenses: IExpense[];

@@ -7,10 +7,8 @@
   width: 100%;
   border-bottom: 1px solid rgba(black, 0.5);
   display: flex;
-  // flex-direction: row;
   button {
     mat-icon {
-      // font-size: 2rem;
       scale: 2;
     }
   }
@@ -24,15 +22,10 @@
 }
 
 .toolbar--button {
-  // align-self: end;
-  // justify-self: end;
-  // margin-left: auto;
   display: flex;
-  // align-items: flex-end;
   justify-content: flex-end;
   width: 100%;
   margin-right: 300px;
-  // justify-self: flex-end;
 
   button {
     font-size: 2rem;

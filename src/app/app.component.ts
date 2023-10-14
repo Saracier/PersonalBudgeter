@@ -45,16 +45,6 @@ export class AppComponent implements OnInit, OnDestroy {
   editModalSubscripction: Subscription;
   routerShowAppMonthSubscripction: Subscription;
   shouldShowAppMonth = true;
-  // editModalSubscripction: Subscription =
-  //   this.EditExpenseService.shouldModalBeDisplayed.subscribe(
-  //     (shouldBeDisplayed) => {
-  //       if (shouldBeDisplayed) {
-  //         this.openEditModal();
-  //       } else {
-  //         this.closeEditModal();
-  //       }
-  //     }
-  //   );
 
   constructor(
     changeDetectorRef: ChangeDetectorRef,
@@ -68,14 +58,6 @@ export class AppComponent implements OnInit, OnDestroy {
     this.mobileQuery = media.matchMedia('(max-width: 600px)');
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
     this.mobileQuery.addListener(this._mobileQueryListener);
-    // setInterval(() => console.log(this.mobileQuery), 1000);
-    // setInterval(() => {
-    //   if (this.mobileQuery.matches) {
-    //     console.log(this.snav);
-    //     setInterval(() => this.snav.open(), 1000);
-    //     // this.snav.toggle!();
-    //   }
-    // }, 1000);
     router.events.subscribe((value) => {
       if (value instanceof NavigationEnd) {
         if (value.url === '/ustawienia') {
@@ -86,27 +68,6 @@ export class AppComponent implements OnInit, OnDestroy {
       }
     });
   }
-
-  // ngOnInit() {
-  //   this.snav.open();
-  //   // if (!this.mobileQuery.matches) {
-  //   //   this.snav.open();
-  //   //   // console.log(this.snav);
-  //   //   // setInterval(() => this.snav.open(), 1000);
-  //   //   // this.snav.toggle();
-  //   // }
-  // }
-
-  // ngDoCheck() {
-  //   if (!this.mobileQuery.matches) {
-  //     console.log(this.snav);
-  //     setInterval(() => this.snav.toggle(), 1000);
-  //     // this.snav.toggle();
-  //   }
-  // }
-  // ngDoCheck() {
-  //   this.snav.open();
-  // }
 
   ngOnInit() {
     this.editModalSubscripction =
@@ -135,7 +96,6 @@ export class AppComponent implements OnInit, OnDestroy {
     const componentRef =
       hostViewContainerRef.createComponent(editFactoryResolver);
 
-    // componentRef.instance.message = message;
     this.closeDynamicComponentSub = componentRef.instance.closeEvent.subscribe(
       () => {
         this.closeDynamicComponentSub.unsubscribe();
@@ -144,8 +104,6 @@ export class AppComponent implements OnInit, OnDestroy {
       }
     );
   }
-
-  // private closeEditModal() {}
 
   ngOnDestroy(): void {
     this.mobileQuery.removeListener(this._mobileQueryListener);

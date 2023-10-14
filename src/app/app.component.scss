@@ -9,10 +9,6 @@
 }
 
 .example-sidenav-container {
-  /* When the sidenav is not fixed, stretch the sidenav container to fill the available space. This
-     causes `<mat-sidenav-content>` to act as our scrolling element for desktop layouts. */
-  // flex: 1;
-  // width: 350px;
   z-index: 3;
 }
 
@@ -25,8 +21,6 @@ mat-sidenav {
 }
 
 .example-is-mobile .example-sidenav-container {
-  /* When the sidenav is fixed, don't constrain the height of the sidenav container. This allows the
-     `<body>` to be our scrolling element for mobile layouts. */
   flex: 1 0 auto;
 }
 
@@ -35,16 +29,9 @@ app-header {
 }
 
 mat-sidenav-content {
-  // z-index: -1;
   padding-top: 150px;
-  // display: transparent;
-  // position: relative;
-  // top: 300px;
-  // left: 300px;
-  // background-color: red;
   height: 100vh;
   width: calc(100% - 300px);
-  // overflow: scroll;
   background-color: #f2f2f2;
 }
 

@@ -110,17 +110,6 @@ export class StatisticsComponent implements OnInit, OnDestroy {
           resultArray[index] += expense.value;
         }
       });
-      // const currentEnumValueAsString = enumElement;
-
-      // resultArray[index] =
-      //   (resultArray[index] /
-      //     this.expenceSetting[
-      //       currentEnumValueAsString as keyof ISettingsExpences
-      //     ]) *
-      //   100;
-
-      // Next line rounds final value to 2 decimals. It preserves to show on the chart something like 9,20131%
-      // resultArray[index] = Number((resultArray[index]).toFixed(2));
     });
     return resultArray;
   }
@@ -173,7 +162,6 @@ export class StatisticsComponent implements OnInit, OnDestroy {
         plugins: {
           legend: {
             display: false,
-            // position: 'top',
           },
           title: {
             display: true,

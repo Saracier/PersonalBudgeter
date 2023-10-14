@@ -692,8 +692,6 @@ export class ExpensesService {
       });
     }
     this.expenses.next(resultArray);
-    // this.mockExpenses = resultArray;
-    // console.log('Hello from expenses', settingsValues);
   }
 
   filterExpenses() {

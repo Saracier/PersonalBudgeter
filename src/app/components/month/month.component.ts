@@ -20,6 +20,7 @@ export class MonthComponent implements OnDestroy, OnInit {
     private CurrentDateService: CurrentDateService,
     private router: Router
   ) {}
+
   ngOnInit() {
     this.updateMonth();
   }

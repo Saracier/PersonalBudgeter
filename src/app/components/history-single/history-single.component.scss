@@ -1,7 +1,6 @@
 .expense {
   display: flex;
   padding: 10px;
-  // width: 100%;
   height: 100%;
   position: relative;
   align-items: center;
@@ -17,7 +16,6 @@
 
 .expense__entry--name {
   font-weight: bold;
-  // width: 25%;
 }
 
 .expense__edit {
@@ -25,10 +23,6 @@
   height: 100%;
   display: flex;
   align-items: center;
-  // position: relative;
-  // top: 50%;
-  // transform: translateY(-50%);
-  // text-align: center;
 }
 
 .expense__entry--currency {

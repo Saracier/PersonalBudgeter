@@ -11,7 +11,6 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { CommonModule } from '@angular/common';
-// import { EditExpenseDirective } from './shared/directives/edit-expense.directive';
 import { EditExpenseComponent } from './shared/edit-expense/edit-expense.component';
 import { SharedDirectivesModule } from './shared-directives/shared-directives.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';

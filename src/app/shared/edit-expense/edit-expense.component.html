@@ -45,9 +45,7 @@
 
         <mat-form-field>
           <mat-label for="date"> Data: </mat-label>
-          <!-- <input id="date" type="date" name="date" formControlName="date" /> -->
           <input matInput [matDatepicker]="picker" formControlName="date" />
-          <!-- <mat-hint>MM/DD/YYYY</mat-hint> -->
           <mat-datepicker-toggle
             matIconSuffix
             [for]="picker"
@@ -63,7 +61,6 @@
 
         <mat-form-field>
           <mat-label for="category"> Kategoria:</mat-label>
-          <!-- <select id="category" name="category" formControlName="category"> -->
           <select matNativeControl required formControlName="category">
             <option value="Food">Jedzenie</option>
             <option value="House">Dom</option>
@@ -85,7 +82,6 @@
       <button (click)="deleteComponent()" mat-raised-button color="primary">
         Anuluj
       </button>
-      <!-- <button (click)="onSubmit()" mat-raised-button color="primary"> -->
       <button
         (click)="onSubmit()"
         mat-raised-button
@@ -96,11 +92,4 @@
       </button>
     </div>
   </div>
-
-  <!-- <div class="info">
-    <p>{{ currentExpense.name }}</p>
-    <button (click)="deleteComponent()" mat-raised-button color="accent">
-      OK
-    </button>
-  </div> -->
 </div>

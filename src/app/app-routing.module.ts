@@ -1,11 +1,9 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-// import { AppComponent } from './app.component';
 
 const routes: Routes = [
   {
     path: '',
-    // component: AppComponent,
     children: [
       {
         path: 'Historia',
@@ -13,7 +11,6 @@ const routes: Routes = [
           import('./containers/history/history.module').then(
             (m) => m.HistoryModule
           ),
-        // component: HistoryComponent,
         data: {
           title: 'Historia',
         },
@@ -34,7 +31,6 @@ const routes: Routes = [
           import('./containers/setting/settings.module').then(
             (m) => m.SettingsModule
           ),
-        // component: SettingComponent,
         data: {
           title: 'Ustawienia',
         },
