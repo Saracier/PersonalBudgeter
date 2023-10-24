@@ -29,11 +29,17 @@ export class AppComponent implements OnInit, OnDestroy {
   title$: Observable<string | null> = this.router.events.pipe(
     map(() => {
       const child: ActivatedRoute | null = this.route.firstChild;
-      const title = child && child.snapshot.data['title'];
-      if (title) {
+      let title = '';
+      child?.snapshot.routeConfig?.children?.forEach((route) => {
+        console.log(route.path);
+        if (route.path === this.router.url.slice(1)) {
+          title = route.path;
+        }
+      });
+      if (title.length > 0) {
         return title;
       }
-      return null;
+      return 'Kalendarz';
     })
   );
   breakpointObserver$ = this.breakpointObserver.observe([Breakpoints.XSmall]);

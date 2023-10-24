@@ -26,7 +26,7 @@ const routes: Routes = [
         },
       },
       {
-        path: 'ustawienia',
+        path: 'Ustawienia',
         loadChildren: () =>
           import('./containers/setting/settings.module').then(
             (m) => m.SettingsModule
@@ -36,7 +36,7 @@ const routes: Routes = [
         },
       },
       {
-        path: 'statystyki',
+        path: 'Statystyki',
         loadChildren: () =>
           import('./containers/statistics/statistics.module').then(
             (m) => m.StatisticsModule
