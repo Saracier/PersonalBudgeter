@@ -654,7 +654,6 @@ export class ExpensesService {
     }
 
     if (date.getMonth() === new Date().getMonth()) {
-      console.log(expensesSingleCategory);
       expensesSingleCategory = expensesSingleCategory.filter(
         (signleExpense) => {
           if (signleExpense.date.getDate() > new Date().getDate()) {
@@ -663,7 +662,6 @@ export class ExpensesService {
           return true;
         }
       );
-      console.log(expensesSingleCategory);
     }
 
     return expensesSingleCategory;

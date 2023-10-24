@@ -60,7 +60,6 @@ export class CalendarPaginationComponent implements OnChanges, OnInit {
   goToToday() {
     this.paginator.firstPage();
     const clicksNextPageButton = Math.floor(new Date().getDate() / 3);
-    console.log(clicksNextPageButton);
     for (let i = 0; i < clicksNextPageButton; i++) {
       this.paginator.nextPage();
     }
@@ -70,7 +69,6 @@ export class CalendarPaginationComponent implements OnChanges, OnInit {
     if (event) {
       this.displayedDays = event.pageSize * event.pageIndex;
     }
-    console.log(event);
     this.updatePagination.emit({
       monthlyExpenses: this.monthlyExpenses,
       daysInMonth: this.daysInMonth,
