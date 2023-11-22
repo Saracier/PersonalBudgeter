@@ -1,39 +1,37 @@
+import { Component, DebugElement, ViewChild } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { Component, DebugElement, ViewContainerRef } from '@angular/core';
 import { EditExpenseDirective } from './edit-expense.directive';
+import { By } from '@angular/platform-browser';
 
 @Component({
-  template: ` <div appEditExpense></div> `,
+  template: `<div appEditExpense></div>`,
 })
-class TestComponent {}
+class TestHostComponent {
+  @ViewChild(EditExpenseDirective) directive!: EditExpenseDirective;
+}
 
 describe('EditExpenseDirective', () => {
-  let fixture: ComponentFixture<TestComponent>;
-  let debugElement: DebugElement;
+  let component: TestHostComponent;
+  let fixture: ComponentFixture<TestHostComponent>;
+  let inputEl: DebugElement;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [TestComponent, EditExpenseDirective],
+      declarations: [TestHostComponent, EditExpenseDirective],
     });
-    fixture = TestBed.createComponent(TestComponent);
-    debugElement = fixture.debugElement;
+    fixture = TestBed.createComponent(TestHostComponent);
+    component = fixture.componentInstance;
+    inputEl = fixture.debugElement.query(By.directive(EditExpenseDirective));
     fixture.detectChanges();
   });
 
   it('should create an instance', () => {
-    const directive = new EditExpenseDirective(
-      debugElement.injector.get(ViewContainerRef)
-    );
+    const directive = component.directive;
     expect(directive).toBeTruthy();
   });
 
-  it('should have the appEditExpense attribute', () => {
-    const divElement = debugElement.nativeElement.querySelector('div');
-    expect(divElement.hasAttribute('appEditExpense')).toBe(true);
-  });
-
-  it('should have ViewContainerRef injected', () => {
-    const directive = debugElement.injector.get(EditExpenseDirective);
-    expect(directive.viewContainerRef).toBeDefined();
+  it('should have ViewContainerRef', () => {
+    const directive = component.directive;
+    expect(directive.viewContainerRef).toBeTruthy();
   });
 });

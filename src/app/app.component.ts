@@ -31,7 +31,6 @@ export class AppComponent implements OnInit, OnDestroy {
       const child: ActivatedRoute | null = this.route.firstChild;
       let title = '';
       child?.snapshot.routeConfig?.children?.forEach((route) => {
-        console.log(route.path);
         if (route.path === this.router.url.slice(1)) {
           title = route.path;
         }
