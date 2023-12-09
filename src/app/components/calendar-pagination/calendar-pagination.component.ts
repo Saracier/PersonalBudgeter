@@ -9,13 +9,20 @@ import {
 } from '@angular/core';
 import { IExpense } from 'src/app/interfaces/iexpense';
 import getDaysInMonth from 'date-fns/getDaysInMonth';
-import { MatPaginator, PageEvent } from '@angular/material/paginator';
+import {
+  MatPaginator,
+  MatPaginatorIntl,
+  PageEvent,
+} from '@angular/material/paginator';
 import { CurrentDateService } from 'src/app/core/services/current-date.service';
+import { PolishPaginationService } from 'src/app/core/services/polish-pagination.service';
+import '@angular/localize/init';
 
 @Component({
   selector: 'app-calendar-pagination',
   templateUrl: './calendar-pagination.component.html',
   styleUrls: ['./calendar-pagination.component.scss'],
+  providers: [{ provide: MatPaginatorIntl, useClass: PolishPaginationService }],
 })
 export class CalendarPaginationComponent implements OnChanges, OnInit {
   @Input()
