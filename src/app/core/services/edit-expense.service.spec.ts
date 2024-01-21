@@ -17,11 +17,11 @@ describe('EditExpenseService', () => {
   });
 
   it('should toggle modal display', () => {
-    service.shouldModalBeDisplayed.next(true);
-    expect(service.shouldModalBeDisplayed.getValue()).toBeTrue();
+    service.shouldModalBeDisplayed$.next(true);
+    expect(service.shouldModalBeDisplayed$.getValue()).toBeTrue();
 
-    service.shouldModalBeDisplayed.next(false);
-    expect(service.shouldModalBeDisplayed.getValue()).toBeFalse();
+    service.shouldModalBeDisplayed$.next(false);
+    expect(service.shouldModalBeDisplayed$.getValue()).toBeFalse();
   });
 
   it('should assign expense to edit', () => {

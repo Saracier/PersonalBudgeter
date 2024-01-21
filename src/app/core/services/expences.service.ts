@@ -161,7 +161,7 @@ export class ExpensesService {
       id: v4(),
     },
   ];
-  expenses = new BehaviorSubject(this.mockExpenses);
+  expenses$ = new BehaviorSubject(this.mockExpenses);
   mockExpensesSource: IExpense[][] = [
     [
       {
@@ -689,13 +689,13 @@ export class ExpensesService {
         );
       });
     }
-    this.expenses.next(resultArray);
+    this.expenses$.next(resultArray);
   }
 
-  filterExpenses() {
+  filterExpenses$() {
     return combineLatest([
-      this.expenses.asObservable(),
-      this.currentDateService.shownDate.asObservable(),
+      this.expenses$.asObservable(),
+      this.currentDateService.shownDate$.asObservable(),
     ]).pipe(
       map(([expenses, currentDate]) => {
         return expenses.filter((expense) => {

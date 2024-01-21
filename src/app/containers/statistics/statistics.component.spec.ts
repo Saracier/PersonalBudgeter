@@ -1,7 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { StatisticsComponent } from './statistics.component';
-import { ExpensesService } from 'src/app/core/services/expences.service';
-import { ExpencesSettingsService } from 'src/app/core/services/expenses-settings.service';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 
 describe('StatisticsComponent', () => {

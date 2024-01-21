@@ -4,7 +4,6 @@ import { MatPaginatorModule, PageEvent } from '@angular/material/paginator';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { IExpense } from 'src/app/interfaces/iexpense';
 import { CurrentDateService } from 'src/app/core/services/current-date.service';
-import { Subject } from 'rxjs/internal/Subject';
 import { Category } from 'src/app/enums/category';
 import { v4 } from 'uuid';
 
@@ -14,13 +13,12 @@ describe('CalendarPaginationComponent', () => {
   let currentDateServiceMock: Partial<CurrentDateService>;
 
   beforeEach(async () => {
-    const goToTodayCalendarMock = new Subject<Date>();
     currentDateServiceMock = {
-      goToTodayCalendar: jasmine.createSpyObj('goToTodayCalendar', [
+      goToTodayCalendar$: jasmine.createSpyObj('goToTodayCalendar', [
         'subscribe',
       ]),
     };
-    currentDateServiceMock?.goToTodayCalendar?.subscribe((date) => {
+    currentDateServiceMock?.goToTodayCalendar$?.subscribe(() => {
       console.log('goToTodayCalendar');
     });
     await TestBed.configureTestingModule({

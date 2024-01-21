@@ -26,7 +26,7 @@ describe('EditExpenseComponent', () => {
       },
     };
     expensesServiceMock = {
-      expenses: new BehaviorSubject<IExpense[]>([]),
+      expenses$: new BehaviorSubject<IExpense[]>([]),
     };
 
     await TestBed.configureTestingModule({

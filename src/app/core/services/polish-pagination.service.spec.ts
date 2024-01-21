@@ -17,7 +17,7 @@ describe('PolishPaginationService', () => {
 
   it('should have default labels', () => {
     expect(service.firstPageLabel).toEqual('Pierwsza strona');
-    expect(service.itemsPerPageLabel).toEqual('Elemtntów na stronę:');
+    expect(service.itemsPerPageLabel).toEqual('Elementów na stronę:');
     expect(service.lastPageLabel).toEqual('Ostatnia strona');
     expect(service.nextPageLabel).toEqual('Następna strona');
     expect(service.previousPageLabel).toEqual('Poprzednia strona');

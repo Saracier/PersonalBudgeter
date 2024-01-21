@@ -23,7 +23,7 @@ describe('CalendarComponent', () => {
 
   beforeEach(async () => {
     expensesServiceMock = {
-      filterExpenses: () => of(mockExpenses),
+      filterExpenses$: () => of(mockExpenses),
     };
 
     await TestBed.configureTestingModule({
@@ -70,9 +70,9 @@ describe('CalendarComponent', () => {
     expect(component.displayedDays).toBe(5);
   });
 
-  it('should unsubscribe from expensesSubscripction on ngOnDestroy', () => {
-    spyOn(component.expensesSubscripction, 'unsubscribe');
+  it('should unsubscribe from expensesSubscripction$ on ngOnDestroy', () => {
+    spyOn(component.expensesSubscripction$, 'unsubscribe');
     component.ngOnDestroy();
-    expect(component.expensesSubscripction.unsubscribe).toHaveBeenCalled();
+    expect(component.expensesSubscripction$.unsubscribe).toHaveBeenCalled();
   });
 });

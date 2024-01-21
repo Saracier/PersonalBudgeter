@@ -9,9 +9,9 @@ import { Router } from '@angular/router';
   styleUrls: ['./month.component.scss'],
 })
 export class MonthComponent implements OnDestroy, OnInit {
-  currentMonth = 'Lipiec';
+  currentMonth = months[0];
   currentMonthNumber: number = new Date().getMonth();
-  currentDateSubscripction = this.CurrentDateService.shownDate.subscribe(
+  currentDateSubscripction$ = this.CurrentDateService.shownDate$.subscribe(
     (dateFromSubscripcion) => {
       this.currentMonthNumber = dateFromSubscripcion.getMonth();
     }
@@ -48,6 +48,6 @@ export class MonthComponent implements OnDestroy, OnInit {
   }
 
   ngOnDestroy() {
-    this.currentDateSubscripction.unsubscribe();
+    this.currentDateSubscripction$.unsubscribe();
   }
 }

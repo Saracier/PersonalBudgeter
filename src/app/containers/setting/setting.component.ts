@@ -25,8 +25,8 @@ export class SettingComponent implements OnInit, OnDestroy {
   };
   categoryEnum = Object.keys(Category);
   settingsForm: FormGroup;
-  expensesSettingsSubscripction =
-    this.ExpencesSettingsService.expensesSettings.subscribe(
+  expensesSettingsSubscripction$ =
+    this.ExpencesSettingsService.expensesSettings$.subscribe(
       (expensesSettings) => (this.expensesSettings = expensesSettings)
     );
   expensesSettings = this.ExpencesSettingsService.mockExpensesSettings;
@@ -73,11 +73,11 @@ export class SettingComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.expensesSettingsSubscripction.unsubscribe();
+    this.expensesSettingsSubscripction$.unsubscribe();
   }
 
   onSubmit() {
-    this.ExpencesSettingsService.expensesSettings.next({
+    this.ExpencesSettingsService.expensesSettings$.next({
       Food: this.settingsForm.value.Food,
       House: this.settingsForm.value.House,
       Transport: this.settingsForm.value.Transport,

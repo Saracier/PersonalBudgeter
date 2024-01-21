@@ -29,14 +29,15 @@ export class CalendarPaginationComponent implements OnChanges, OnInit {
   monthlyExpenses!: IExpense[];
   daysInMonth: number;
   displayedDays: number;
+  pageSize = 3;
   @Output() updatePagination = new EventEmitter<{
     monthlyExpenses: IExpense[];
     daysInMonth: number;
     displayedDays: number;
   }>();
   @ViewChild(MatPaginator) paginator: MatPaginator;
-  currentDateSubscripction =
-    this.CurrentDateService.goToTodayCalendar.subscribe(() => {
+  currentDateSubscripction$ =
+    this.CurrentDateService.goToTodayCalendar$.subscribe(() => {
       this.goToToday();
     });
 
@@ -66,16 +67,15 @@ export class CalendarPaginationComponent implements OnChanges, OnInit {
 
   goToToday() {
     this.paginator.firstPage();
-    const clicksNextPageButton = Math.floor(new Date().getDate() / 3);
+    const clicksNextPageButton = Math.floor(new Date().getDate() / 3) - 1;
     for (let i = 0; i < clicksNextPageButton; i++) {
       this.paginator.nextPage();
     }
   }
 
-  handlePaginationEvent(event?: PageEvent) {
-    if (event) {
-      this.displayedDays = event.pageSize * event.pageIndex;
-    }
+  handlePaginationEvent(event: PageEvent) {
+    this.pageSize = event.pageSize;
+    this.displayedDays = event.pageSize * event.pageIndex;
     this.updatePagination.emit({
       monthlyExpenses: this.monthlyExpenses,
       daysInMonth: this.daysInMonth,

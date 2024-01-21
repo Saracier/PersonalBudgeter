@@ -13,7 +13,7 @@ export class CalendarComponent implements OnDestroy {
   monthlyExpenses: IExpense[] = [];
   daysInMonth: number;
   displayedDays: number;
-  expensesSubscripction = this.ExpensesService.filterExpenses().subscribe(
+  expensesSubscripction$ = this.ExpensesService.filterExpenses$().subscribe(
     (expenses) => {
       if (expenses.length === 0) {
         this.monthlyExpenses = [];
@@ -36,7 +36,8 @@ export class CalendarComponent implements OnDestroy {
     this.daysInMonth = paginationData.daysInMonth;
     this.displayedDays = paginationData.displayedDays;
   }
+
   ngOnDestroy() {
-    this.expensesSubscripction.unsubscribe();
+    this.expensesSubscripction$.unsubscribe();
   }
 }

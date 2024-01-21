@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { CalendarSingleComponent } from './calendar-single.component';
 import { By } from '@angular/platform-browser';
@@ -16,11 +17,11 @@ describe('CalendarSingleComponent', () => {
   beforeEach(async () => {
     editExpenseServiceMock = {
       expenseToEdit: null,
-      shouldModalBeDisplayed: new BehaviorSubject<boolean>(false),
+      shouldModalBeDisplayed$: new BehaviorSubject<boolean>(false),
     };
 
     spyOn(
-      editExpenseServiceMock.shouldModalBeDisplayed!,
+      editExpenseServiceMock.shouldModalBeDisplayed$!,
       'next'
     ).and.callThrough();
 
@@ -64,7 +65,7 @@ describe('CalendarSingleComponent', () => {
     ).nativeElement;
     editButton.click();
     expect(
-      editExpenseServiceMock.shouldModalBeDisplayed?.next
+      editExpenseServiceMock.shouldModalBeDisplayed$?.next
     ).toHaveBeenCalledWith(true);
     expect(editExpenseServiceMock.expenseToEdit).toBe(component.singleExpense);
   });

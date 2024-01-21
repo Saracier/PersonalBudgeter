@@ -29,7 +29,7 @@ describe('ExpencesSettingsService', () => {
       Saving: 1500,
       Other: 400,
     };
-    expect(service.expensesSettings.getValue()).toEqual(initialSettings);
+    expect(service.expensesSettings$.getValue()).toEqual(initialSettings);
   });
 
   it('should update expense settings', () => {
@@ -47,7 +47,7 @@ describe('ExpencesSettingsService', () => {
       Saving: 100,
       Other: 200,
     };
-    service.expensesSettings.next(newSettings);
-    expect(service.expensesSettings.getValue()).toEqual(newSettings);
+    service.expensesSettings$.next(newSettings);
+    expect(service.expensesSettings$.getValue()).toEqual(newSettings);
   });
 });

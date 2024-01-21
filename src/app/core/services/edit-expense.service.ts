@@ -6,6 +6,6 @@ import { IExpense } from 'src/app/interfaces/iexpense';
   providedIn: 'root',
 })
 export class EditExpenseService {
-  shouldModalBeDisplayed = new BehaviorSubject(false);
+  shouldModalBeDisplayed$ = new BehaviorSubject(false);
   expenseToEdit: IExpense | null = null;
 }

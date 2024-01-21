@@ -11,12 +11,13 @@ describe('MonthComponent', () => {
   let fixture: ComponentFixture<MonthComponent>;
   let currentDateServiceMock: Partial<CurrentDateService>;
   let routerMock: Partial<Router>;
-  let shownDateSubject: Subject<Date>;
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  let shownDateSubject$: Subject<Date>;
 
   beforeEach(async () => {
-    shownDateSubject = new Subject<Date>();
+    shownDateSubject$ = new Subject<Date>();
     currentDateServiceMock = {
-      shownDate: new BehaviorSubject(new Date('07.07.2023')),
+      shownDate$: new BehaviorSubject(new Date('07.07.2023')),
       subtractMonth: jasmine.createSpy('subtractMonth'),
       addMonth: jasmine.createSpy('addMonth'),
       setToday: jasmine.createSpy('setToday'),
@@ -62,8 +63,8 @@ describe('MonthComponent', () => {
   });
 
   it('should unsubscribe from currentDateSubscripction on ngOnDestroy', () => {
-    spyOn(component.currentDateSubscripction, 'unsubscribe');
+    spyOn(component.currentDateSubscripction$, 'unsubscribe');
     component.ngOnDestroy();
-    expect(component.currentDateSubscripction.unsubscribe).toHaveBeenCalled();
+    expect(component.currentDateSubscripction$.unsubscribe).toHaveBeenCalled();
   });
 });

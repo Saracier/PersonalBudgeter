@@ -7,7 +7,7 @@ export class PolishPaginationService implements MatPaginatorIntl {
   changes = new Subject<void>();
 
   firstPageLabel = $localize`Pierwsza strona`;
-  itemsPerPageLabel = $localize`Elemtntów na stronę:`;
+  itemsPerPageLabel = $localize`Elementów na stronę:`;
   lastPageLabel = $localize`Ostatnia strona`;
   nextPageLabel = 'Następna strona';
   previousPageLabel = 'Poprzednia strona';

@@ -20,5 +20,5 @@ export class ExpencesSettingsService {
     Saving: 1500,
     Other: 400,
   };
-  expensesSettings = new BehaviorSubject(this.mockExpensesSettings);
+  expensesSettings$ = new BehaviorSubject(this.mockExpensesSettings);
 }

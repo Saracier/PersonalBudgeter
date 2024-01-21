@@ -34,7 +34,7 @@ export class StatisticsComponent implements OnInit, OnDestroy {
   categoryFulfillment: number[];
   monthlyExpenses: IExpense[] = [];
   expenceSetting: ISettingsExpences;
-  expensesSubscripction = this.ExpensesService.filterExpenses().subscribe(
+  expensesSubscripction$ = this.ExpensesService.filterExpenses$().subscribe(
     (expenses) => {
       this.monthlyExpenses = expenses;
       if (this.budgetRealisationChart) {
@@ -49,8 +49,8 @@ export class StatisticsComponent implements OnInit, OnDestroy {
       if (expenses.length === 0) return;
     }
   );
-  expensesSettingsSubscripction =
-    this.ExpencesSettingsService.expensesSettings.subscribe(
+  expensesSettingsSubscripction$ =
+    this.ExpencesSettingsService.expensesSettings$.subscribe(
       (expenceSetting: ISettingsExpences) => {
         this.expenceSetting = expenceSetting;
       }
@@ -284,7 +284,7 @@ export class StatisticsComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.expensesSubscripction.unsubscribe();
-    this.expensesSettingsSubscripction.unsubscribe();
+    this.expensesSubscripction$.unsubscribe();
+    this.expensesSettingsSubscripction$.unsubscribe();
   }
 }

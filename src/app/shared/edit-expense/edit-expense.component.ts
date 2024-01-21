@@ -66,10 +66,10 @@ export class EditExpenseComponent implements OnInit {
   }
 
   onSubmit() {
-    const oldValues = this.ExpensesService.expenses.getValue();
+    const oldValues = this.ExpensesService.expenses$.getValue();
     if (this.currentExpense) {
       let indexOfExpense = -1;
-      for (const expence of this.ExpensesService.expenses.getValue()) {
+      for (const expence of this.ExpensesService.expenses$.getValue()) {
         if (expence.id === this.currentExpense.id) {
           indexOfExpense = oldValues.indexOf(expence);
         }
@@ -82,7 +82,7 @@ export class EditExpenseComponent implements OnInit {
       editedValues[indexOfExpense].value = this.editForm.value.value;
       editedValues[indexOfExpense].date = new Date(this.editForm.value.date);
       editedValues[indexOfExpense].category = this.editForm.value.category;
-      this.ExpensesService.expenses.next(editedValues);
+      this.ExpensesService.expenses$.next(editedValues);
     } else {
       const categoryValue: Category = this.editForm.value.category as Category;
       const newValue = {
@@ -92,7 +92,7 @@ export class EditExpenseComponent implements OnInit {
         category: Category[categoryValue] as unknown as Category,
         id: v4(),
       };
-      this.ExpensesService.expenses.next([...oldValues, newValue]);
+      this.ExpensesService.expenses$.next([...oldValues, newValue]);
     }
     this.deleteComponent();
   }

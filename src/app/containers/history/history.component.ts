@@ -10,7 +10,7 @@ import { Observable, tap } from 'rxjs';
 })
 export class HistoryComponent {
   expenses$: Observable<IExpense[]> =
-    this.ExpensesService.filterExpenses().pipe(
+    this.ExpensesService.filterExpenses$().pipe(
       tap((expenses) => {
         if (expenses.length === 0) return;
         this.wantedMonth = expenses[0].date.getMonth();
@@ -19,5 +19,6 @@ export class HistoryComponent {
     );
   wantedMonth: number = new Date().getMonth();
   wantedYear: number = new Date().getFullYear();
+
   constructor(private ExpensesService: ExpensesService) {}
 }

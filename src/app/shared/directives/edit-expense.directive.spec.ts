@@ -13,6 +13,7 @@ class TestHostComponent {
 describe('EditExpenseDirective', () => {
   let component: TestHostComponent;
   let fixture: ComponentFixture<TestHostComponent>;
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   let inputEl: DebugElement;
 
   beforeEach(() => {

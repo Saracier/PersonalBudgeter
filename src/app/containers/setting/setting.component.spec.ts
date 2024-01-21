@@ -27,11 +27,12 @@ describe('SettingComponent', () => {
     };
     expencesSettingsServiceMock = {
       mockExpensesSettings: mockExpensesSettings,
-      expensesSettings: new BehaviorSubject(mockExpensesSettings),
+      expensesSettings$: new BehaviorSubject(mockExpensesSettings),
     };
 
     spyOn(
-      expencesSettingsServiceMock.expensesSettings!,
+      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+      expencesSettingsServiceMock.expensesSettings$!,
       'next'
     ).and.callThrough();
 
@@ -75,15 +76,15 @@ describe('SettingComponent', () => {
   it('should call service method to update settings on submit', () => {
     component.onSubmit();
     expect(
-      expencesSettingsServiceMock?.expensesSettings?.next
+      expencesSettingsServiceMock?.expensesSettings$?.next
     ).toHaveBeenCalled();
   });
 
-  it('should unsubscribe from expensesSettingsSubscripction on ngOnDestroy', () => {
-    spyOn(component.expensesSettingsSubscripction, 'unsubscribe');
+  it('should unsubscribe from expensesSettingsSubscripction$ on ngOnDestroy', () => {
+    spyOn(component.expensesSettingsSubscripction$, 'unsubscribe');
     component.ngOnDestroy();
     expect(
-      component.expensesSettingsSubscripction.unsubscribe
+      component.expensesSettingsSubscripction$.unsubscribe
     ).toHaveBeenCalled();
   });
 });

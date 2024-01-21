@@ -11,7 +11,7 @@ describe('ExpensesService', () => {
 
   beforeEach(() => {
     currentDateServiceMock = {
-      shownDate: new BehaviorSubject(new Date(2023, 11)),
+      shownDate$: new BehaviorSubject(new Date(2023, 11)),
     };
     expencesSettingsServiceMock = {
       mockExpensesSettings: {
@@ -49,6 +49,6 @@ describe('ExpensesService', () => {
 
   it('should generate mock expenses', () => {
     service.prepareMockExpenses();
-    expect(service.expenses.getValue().length).toBeGreaterThan(0);
+    expect(service.expenses$.getValue().length).toBeGreaterThan(0);
   });
 });

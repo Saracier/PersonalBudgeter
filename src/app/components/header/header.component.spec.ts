@@ -4,7 +4,6 @@ import { EditExpenseService } from 'src/app/core/services/edit-expense.service';
 import { By } from '@angular/platform-browser';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { BehaviorSubject } from 'rxjs/internal/BehaviorSubject';
-import { MatToolbarModule } from '@angular/material/toolbar';
 
 describe('HeaderComponent', () => {
   let component: HeaderComponent;
@@ -14,11 +13,12 @@ describe('HeaderComponent', () => {
   beforeEach(async () => {
     editExpenseServiceMock = {
       expenseToEdit: null,
-      shouldModalBeDisplayed: new BehaviorSubject<boolean>(false),
+      shouldModalBeDisplayed$: new BehaviorSubject<boolean>(false),
     };
 
     spyOn(
-      editExpenseServiceMock.shouldModalBeDisplayed!,
+      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+      editExpenseServiceMock.shouldModalBeDisplayed$!,
       'next'
     ).and.callThrough();
 
@@ -67,7 +67,7 @@ describe('HeaderComponent', () => {
     ).nativeElement;
     addButton.click();
     expect(
-      editExpenseServiceMock?.shouldModalBeDisplayed?.next
+      editExpenseServiceMock?.shouldModalBeDisplayed$?.next
     ).toHaveBeenCalledWith(true);
     expect(editExpenseServiceMock.expenseToEdit).toBeNull();
   });

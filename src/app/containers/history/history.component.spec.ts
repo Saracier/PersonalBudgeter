@@ -13,7 +13,7 @@ describe('HistoryComponent', () => {
 
   beforeEach(async () => {
     expensesServiceMock = {
-      filterExpenses: () => of(mockExpenses),
+      filterExpenses$: () => of(mockExpenses),
     };
 
     await TestBed.configureTestingModule({

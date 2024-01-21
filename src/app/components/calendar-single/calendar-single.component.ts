@@ -15,6 +15,6 @@ export class CalendarSingleComponent {
 
   openEditModal() {
     this.EditExpenseService.expenseToEdit = this.singleExpense;
-    this.EditExpenseService.shouldModalBeDisplayed.next(true);
+    this.EditExpenseService.shouldModalBeDisplayed$.next(true);
   }
 }

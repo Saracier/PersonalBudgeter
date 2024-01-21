@@ -9,22 +9,22 @@ import { Subject } from 'rxjs/internal/Subject';
   providedIn: 'root',
 })
 export class CurrentDateService {
-  shownDate = new BehaviorSubject(new Date());
-  goToTodayCalendar = new Subject();
+  shownDate$ = new BehaviorSubject(new Date());
+  goToTodayCalendar$ = new Subject();
 
   addMonth() {
-    this.shownDate.next(addMonths(this.shownDate.getValue(), 1));
+    this.shownDate$.next(addMonths(this.shownDate$.getValue(), 1));
   }
 
   subtractMonth() {
-    this.shownDate.next(subMonths(this.shownDate.getValue(), 1));
+    this.shownDate$.next(subMonths(this.shownDate$.getValue(), 1));
   }
 
   setToday() {
-    this.shownDate.next(new Date());
+    this.shownDate$.next(new Date());
   }
 
   goToToday() {
-    this.goToTodayCalendar.next(new Date());
+    this.goToTodayCalendar$.next(new Date());
   }
 }

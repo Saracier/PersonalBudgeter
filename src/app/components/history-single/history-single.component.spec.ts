@@ -15,11 +15,12 @@ describe('HistorySingleComponent', () => {
   beforeEach(async () => {
     editExpenseServiceMock = {
       expenseToEdit: null,
-      shouldModalBeDisplayed: new BehaviorSubject<boolean>(false),
+      shouldModalBeDisplayed$: new BehaviorSubject<boolean>(false),
     };
 
     spyOn(
-      editExpenseServiceMock.shouldModalBeDisplayed!,
+      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+      editExpenseServiceMock.shouldModalBeDisplayed$!,
       'next'
     ).and.callThrough();
 
@@ -72,7 +73,7 @@ describe('HistorySingleComponent', () => {
     ).nativeElement;
     editButton.click();
     expect(
-      editExpenseServiceMock?.shouldModalBeDisplayed?.next
+      editExpenseServiceMock?.shouldModalBeDisplayed$?.next
     ).toHaveBeenCalledWith(true);
     expect(editExpenseServiceMock.expenseToEdit).toEqual(
       component.singleExpense

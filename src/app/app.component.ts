@@ -45,10 +45,10 @@ export class AppComponent implements OnInit, OnDestroy {
   private _mobileQueryListener: () => void;
   @ViewChild(EditExpenseDirective, { static: false })
   EditExpenseDirective: EditExpenseDirective;
-  private closeDynamicComponentSub: Subscription;
+  private closeDynamicComponentSub$: Subscription;
 
-  editModalSubscripction: Subscription;
-  routerShowAppMonthSubscripction: Subscription;
+  editModalSubscripction$: Subscription;
+  routerShowAppMonthSubscripction$: Subscription;
   shouldShowAppMonth = true;
 
   constructor(
@@ -75,8 +75,8 @@ export class AppComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.editModalSubscripction =
-      this.EditExpenseService.shouldModalBeDisplayed.subscribe(
+    this.editModalSubscripction$ =
+      this.EditExpenseService.shouldModalBeDisplayed$.subscribe(
         (shouldBeDisplayed) => {
           if (shouldBeDisplayed) {
             this.openEditModal();
@@ -101,9 +101,9 @@ export class AppComponent implements OnInit, OnDestroy {
     const componentRef =
       hostViewContainerRef.createComponent(editFactoryResolver);
 
-    this.closeDynamicComponentSub = componentRef.instance.closeEvent.subscribe(
+    this.closeDynamicComponentSub$ = componentRef.instance.closeEvent.subscribe(
       () => {
-        this.closeDynamicComponentSub.unsubscribe();
+        this.closeDynamicComponentSub$.unsubscribe();
         hostViewContainerRef.clear();
         this.EditExpenseService.expenseToEdit = null;
       }
@@ -112,8 +112,8 @@ export class AppComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.mobileQuery.removeListener(this._mobileQueryListener);
-    this.closeDynamicComponentSub.unsubscribe();
-    this.editModalSubscripction.unsubscribe();
-    this.routerShowAppMonthSubscripction.unsubscribe();
+    this.closeDynamicComponentSub$.unsubscribe();
+    this.editModalSubscripction$.unsubscribe();
+    this.routerShowAppMonthSubscripction$.unsubscribe();
   }
 }
