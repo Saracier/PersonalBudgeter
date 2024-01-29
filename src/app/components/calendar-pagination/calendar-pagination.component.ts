@@ -67,7 +67,7 @@ export class CalendarPaginationComponent implements OnChanges, OnInit {
 
   goToToday() {
     this.paginator.firstPage();
-    const clicksNextPageButton = Math.floor(new Date().getDate() / 3) - 1;
+    const clicksNextPageButton = Math.floor(new Date().getDate() / 3);
     for (let i = 0; i < clicksNextPageButton; i++) {
       this.paginator.nextPage();
     }
