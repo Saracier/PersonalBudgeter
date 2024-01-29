@@ -41,7 +41,10 @@ export class AppComponent implements OnInit, OnDestroy {
       return 'Kalendarz';
     })
   );
-  breakpointObserver$ = this.breakpointObserver.observe([Breakpoints.XSmall]);
+  breakpointObserver$ = this.breakpointObserver.observe([
+    Breakpoints.Small,
+    Breakpoints.Small,
+  ]);
   private _mobileQueryListener: () => void;
   @ViewChild(EditExpenseDirective, { static: false })
   EditExpenseDirective: EditExpenseDirective;
@@ -60,7 +63,7 @@ export class AppComponent implements OnInit, OnDestroy {
     private EditExpenseService: EditExpenseService,
     private componentFactoryResolver: ComponentFactoryResolver
   ) {
-    this.mobileQuery = media.matchMedia('(max-width: 600px)');
+    this.mobileQuery = media.matchMedia('(max-width: 959.98px)');
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
     this.mobileQuery.addListener(this._mobileQueryListener);
     router.events.subscribe((value) => {
