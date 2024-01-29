@@ -1,4 +1,4 @@
-export interface ISettingsExpences {
+export interface ISettingsExpenses {
   Food: number;
   House: number;
   Transport: number;

@@ -8,9 +8,9 @@ import {
 import { Chart } from 'chart.js/auto';
 import { Category } from 'src/app/enums/category';
 import { IExpense } from 'src/app/interfaces/iexpense';
-import { ISettingsExpences } from 'src/app/interfaces/isettings-expences';
+import { ISettingsExpenses } from 'src/app/interfaces/isettings-expenses';
 import { ExpensesService } from 'src/app/core/services/expences.service';
-import { ExpencesSettingsService } from 'src/app/core/services/expenses-settings.service';
+import { ExpensesSettingsService } from 'src/app/core/services/expences-settings.service';
 
 @Component({
   selector: 'app-statistics',
@@ -33,7 +33,7 @@ export class StatisticsComponent implements OnInit, OnDestroy {
   categoryEnum = Object.keys(Category);
   categoryFulfillment: number[];
   monthlyExpenses: IExpense[] = [];
-  expenceSetting: ISettingsExpences;
+  expenceSetting: ISettingsExpenses;
   expensesSubscripction$ = this.ExpensesService.filterExpenses$().subscribe(
     (expenses) => {
       this.monthlyExpenses = expenses;
@@ -50,8 +50,8 @@ export class StatisticsComponent implements OnInit, OnDestroy {
     }
   );
   expensesSettingsSubscripction$ =
-    this.ExpencesSettingsService.expensesSettings$.subscribe(
-      (expenceSetting: ISettingsExpences) => {
+    this.ExpensesSettingsService.expensesSettings$.subscribe(
+      (expenceSetting: ISettingsExpenses) => {
         this.expenceSetting = expenceSetting;
       }
     );
@@ -72,7 +72,7 @@ export class StatisticsComponent implements OnInit, OnDestroy {
 
   constructor(
     private ExpensesService: ExpensesService,
-    private ExpencesSettingsService: ExpencesSettingsService
+    private ExpensesSettingsService: ExpensesSettingsService
   ) {}
 
   ngOnInit(): void {
@@ -83,7 +83,7 @@ export class StatisticsComponent implements OnInit, OnDestroy {
 
   prepareLabels() {
     return this.categoryEnum.map((name) => {
-      return this.mapEngToPl[name as keyof ISettingsExpences];
+      return this.mapEngToPl[name as keyof ISettingsExpenses];
     });
   }
 
@@ -94,7 +94,7 @@ export class StatisticsComponent implements OnInit, OnDestroy {
       sumExpenses += element.value;
     });
     Object.keys(this.expenceSetting).forEach((key) => {
-      sumIncome += this.expenceSetting[key as keyof ISettingsExpences];
+      sumIncome += this.expenceSetting[key as keyof ISettingsExpenses];
     });
     let percentageFulfillment = (sumExpenses / sumIncome) * 100;
     percentageFulfillment = Number(percentageFulfillment.toFixed(2));

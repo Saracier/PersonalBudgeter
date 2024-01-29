@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { ExpencesSettingsService } from 'src/app/core/services/expenses-settings.service';
+import { ExpensesSettingsService } from 'src/app/core/services/expences-settings.service';
 import { Category } from 'src/app/enums/category';
 
 @Component({
@@ -26,13 +26,13 @@ export class SettingComponent implements OnInit, OnDestroy {
   categoryEnum = Object.keys(Category);
   settingsForm: FormGroup;
   expensesSettingsSubscripction$ =
-    this.ExpencesSettingsService.expensesSettings$.subscribe(
+    this.ExpensesSettingsService.expensesSettings$.subscribe(
       (expensesSettings) => (this.expensesSettings = expensesSettings)
     );
-  expensesSettings = this.ExpencesSettingsService.mockExpensesSettings;
+  expensesSettings = this.ExpensesSettingsService.mockExpensesSettings;
   hasBeenSaved = false;
 
-  constructor(private ExpencesSettingsService: ExpencesSettingsService) {}
+  constructor(private ExpensesSettingsService: ExpensesSettingsService) {}
 
   ngOnInit() {
     this.settingsForm = new FormGroup({
@@ -77,7 +77,7 @@ export class SettingComponent implements OnInit, OnDestroy {
   }
 
   onSubmit() {
-    this.ExpencesSettingsService.expensesSettings$.next({
+    this.ExpensesSettingsService.expensesSettings$.next({
       Food: this.settingsForm.value.Food,
       House: this.settingsForm.value.House,
       Transport: this.settingsForm.value.Transport,

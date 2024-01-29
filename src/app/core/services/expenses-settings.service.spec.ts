@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 import { CurrentDateService } from './current-date.service';
-import { ExpencesSettingsService } from './expenses-settings.service';
+import { ExpensesSettingsService } from './expences-settings.service';
 import { BehaviorSubject } from 'rxjs';
 import { ExpensesService } from './expences.service';
 
 describe('ExpensesService', () => {
   let service: ExpensesService;
   let currentDateServiceMock: Partial<CurrentDateService>;
-  let expencesSettingsServiceMock: Partial<ExpencesSettingsService>;
+  let expencesSettingsServiceMock: Partial<ExpensesSettingsService>;
 
   beforeEach(() => {
     currentDateServiceMock = {
@@ -35,7 +35,7 @@ describe('ExpensesService', () => {
         ExpensesService,
         { provide: CurrentDateService, useValue: currentDateServiceMock },
         {
-          provide: ExpencesSettingsService,
+          provide: ExpensesSettingsService,
           useValue: expencesSettingsServiceMock,
         },
       ],

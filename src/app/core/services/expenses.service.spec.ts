@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
-import { ISettingsExpences } from 'src/app/interfaces/isettings-expences';
-import { ExpencesSettingsService } from './expenses-settings.service';
+import { ISettingsExpenses } from 'src/app/interfaces/isettings-expenses';
+import { ExpencesSettingsService } from './expences-settings.service';
 
 describe('ExpencesSettingsService', () => {
   let service: ExpencesSettingsService;
@@ -15,7 +15,7 @@ describe('ExpencesSettingsService', () => {
   });
 
   it('should have initial expense settings', () => {
-    const initialSettings: ISettingsExpences = {
+    const initialSettings: ISettingsExpenses = {
       Food: 400,
       House: 1100,
       Transport: 300,
@@ -33,7 +33,7 @@ describe('ExpencesSettingsService', () => {
   });
 
   it('should update expense settings', () => {
-    const newSettings: ISettingsExpences = {
+    const newSettings: ISettingsExpenses = {
       Food: 500,
       House: 1200,
       Transport: 200,

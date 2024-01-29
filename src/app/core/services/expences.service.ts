@@ -4,7 +4,7 @@ import { IExpense } from 'src/app/interfaces/iexpense';
 import { Category } from 'src/app/enums/category';
 import { v4 } from 'uuid';
 import { CurrentDateService } from './current-date.service';
-import { ExpencesSettingsService } from '../services/expenses-settings.service';
+import { ExpensesSettingsService } from './expences-settings.service';
 import subMonths from 'date-fns/subMonths';
 import getDaysInMonth from 'date-fns/getDaysInMonth';
 
@@ -611,7 +611,7 @@ export class ExpensesService {
 
   constructor(
     private currentDateService: CurrentDateService,
-    private ExpencesSettingsService: ExpencesSettingsService
+    private ExpensesSettingsService: ExpensesSettingsService
   ) {
     this.prepareMockExpenses();
   }
@@ -670,7 +670,7 @@ export class ExpensesService {
   prepareMockExpenses() {
     const resultArray: IExpense[] = [];
     const settingsValues: number[] = Object.values(
-      this.ExpencesSettingsService.mockExpensesSettings
+      this.ExpensesSettingsService.mockExpensesSettings
     );
     for (let i = 0; i < 3; i++) {
       let monthForThisIteration = new Date().getMonth();

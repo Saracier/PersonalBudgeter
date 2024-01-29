@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { SettingComponent } from './setting.component';
-import { ExpencesSettingsService } from 'src/app/core/services/expenses-settings.service';
+import { ExpencesSettingsService } from 'src/app/core/services/expences-settings.service';
 import { ReactiveFormsModule } from '@angular/forms';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { BehaviorSubject } from 'rxjs/internal/BehaviorSubject';
