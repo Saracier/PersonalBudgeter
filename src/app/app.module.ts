@@ -12,7 +12,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { CommonModule } from '@angular/common';
 import { EditExpenseComponent } from './shared/edit-expense/edit-expense.component';
-import { SharedDirectivesModule } from './shared-directives/shared-directives.module';
+import { SharedDirectivesModule } from './containers/shared-directives/shared-directives.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {
   MAT_FORM_FIELD_DEFAULT_OPTIONS,

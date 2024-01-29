@@ -7,7 +7,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
 import { MatListModule } from '@angular/material/list';
 import { MatSidenavModule } from '@angular/material/sidenav';
-import { SharedDirectivesModule } from 'src/app/shared-directives/shared-directives.module';
+import { SharedDirectivesModule } from 'src/app/containers/shared-directives/shared-directives.module';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { HistoryRoutingModule } from './history-routing.module';
 
