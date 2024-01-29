@@ -158,7 +158,7 @@ export class StatisticsComponent implements OnInit, OnDestroy {
           },
         },
         responsive: true,
-        aspectRatio: 1 | 3,
+        aspectRatio: 5,
         plugins: {
           legend: {
             display: false,

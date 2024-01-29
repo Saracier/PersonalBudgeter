@@ -6,7 +6,9 @@
 }
 .charts--income {
   width: min(100%, 750px);
-
+  display: flex;
+  justify-content: center;
+  align-items: center;
   canvas {
     height: 150px;
     width: 100%;
