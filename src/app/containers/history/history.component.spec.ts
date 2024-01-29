@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { HistoryComponent } from './history.component';
-import { ExpensesService } from 'src/app/core/services/expences.service';
+import { ExpensesService } from 'src/app/core/services/expenses.service';
 import { of } from 'rxjs';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { IExpense } from 'src/app/interfaces/iexpense';

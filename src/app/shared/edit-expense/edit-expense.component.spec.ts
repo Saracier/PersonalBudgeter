@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { EditExpenseComponent } from './edit-expense.component';
 import { EditExpenseService } from 'src/app/core/services/edit-expense.service';
-import { ExpensesService } from 'src/app/core/services/expences.service';
+import { ExpensesService } from 'src/app/core/services/expenses.service';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { IExpense } from 'src/app/interfaces/iexpense';

@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { SettingComponent } from './setting.component';
-import { ExpencesSettingsService } from 'src/app/core/services/expences-settings.service';
+import { ExpensesSettingsService } from 'src/app/core/services/expenses-settings.service';
 import { ReactiveFormsModule } from '@angular/forms';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { BehaviorSubject } from 'rxjs/internal/BehaviorSubject';
@@ -8,7 +8,7 @@ import { BehaviorSubject } from 'rxjs/internal/BehaviorSubject';
 describe('SettingComponent', () => {
   let component: SettingComponent;
   let fixture: ComponentFixture<SettingComponent>;
-  let expencesSettingsServiceMock: Partial<ExpencesSettingsService>;
+  let expensesSettingsServiceMock: Partial<ExpensesSettingsService>;
 
   beforeEach(async () => {
     const mockExpensesSettings = {
@@ -25,14 +25,14 @@ describe('SettingComponent', () => {
       Saving: 1500,
       Other: 400,
     };
-    expencesSettingsServiceMock = {
+    expensesSettingsServiceMock = {
       mockExpensesSettings: mockExpensesSettings,
       expensesSettings$: new BehaviorSubject(mockExpensesSettings),
     };
 
     spyOn(
       // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-      expencesSettingsServiceMock.expensesSettings$!,
+      expensesSettingsServiceMock.expensesSettings$!,
       'next'
     ).and.callThrough();
 
@@ -41,8 +41,8 @@ describe('SettingComponent', () => {
       imports: [ReactiveFormsModule],
       providers: [
         {
-          provide: ExpencesSettingsService,
-          useValue: expencesSettingsServiceMock,
+          provide: ExpensesSettingsService,
+          useValue: expensesSettingsServiceMock,
         },
       ],
       schemas: [NO_ERRORS_SCHEMA],
@@ -61,7 +61,7 @@ describe('SettingComponent', () => {
 
   it('should initialize form with data from service', () => {
     expect(component.settingsForm.value).toEqual(
-      expencesSettingsServiceMock.mockExpensesSettings
+      expensesSettingsServiceMock.mockExpensesSettings
     );
   });
 
@@ -76,7 +76,7 @@ describe('SettingComponent', () => {
   it('should call service method to update settings on submit', () => {
     component.onSubmit();
     expect(
-      expencesSettingsServiceMock?.expensesSettings$?.next
+      expensesSettingsServiceMock?.expensesSettings$?.next
     ).toHaveBeenCalled();
   });
 

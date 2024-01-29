@@ -3,7 +3,7 @@ import { BehaviorSubject, combineLatest, map } from 'rxjs';
 import { IExpense } from 'src/app/interfaces/iexpense';
 import { v4 } from 'uuid';
 import { CurrentDateService } from './current-date.service';
-import { ExpensesSettingsService } from './expences-settings.service';
+import { ExpensesSettingsService } from './expenses-settings.service';
 import subMonths from 'date-fns/subMonths';
 import getDaysInMonth from 'date-fns/getDaysInMonth';
 import { mockExpenses, mockExpensesSource } from '../../../assets/mockExpences';

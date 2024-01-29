@@ -9,8 +9,8 @@ import { Chart } from 'chart.js/auto';
 import { Category } from 'src/app/enums/category';
 import { IExpense } from 'src/app/interfaces/iexpense';
 import { ISettingsExpenses } from 'src/app/interfaces/isettings-expenses';
-import { ExpensesService } from 'src/app/core/services/expences.service';
-import { ExpensesSettingsService } from 'src/app/core/services/expences-settings.service';
+import { ExpensesService } from 'src/app/core/services/expenses.service';
+import { ExpensesSettingsService } from 'src/app/core/services/expenses-settings.service';
 
 @Component({
   selector: 'app-statistics',
@@ -33,7 +33,7 @@ export class StatisticsComponent implements OnInit, OnDestroy {
   categoryEnum = Object.keys(Category);
   categoryFulfillment: number[];
   monthlyExpenses: IExpense[] = [];
-  expenceSetting: ISettingsExpenses;
+  expenseSetting: ISettingsExpenses;
   expensesSubscripction$ = this.ExpensesService.filterExpenses$().subscribe(
     (expenses) => {
       this.monthlyExpenses = expenses;
@@ -51,8 +51,8 @@ export class StatisticsComponent implements OnInit, OnDestroy {
   );
   expensesSettingsSubscripction$ =
     this.ExpensesSettingsService.expensesSettings$.subscribe(
-      (expenceSetting: ISettingsExpenses) => {
-        this.expenceSetting = expenceSetting;
+      (expenseSetting: ISettingsExpenses) => {
+        this.expenseSetting = expenseSetting;
       }
     );
   mapEngToPl = {
@@ -93,8 +93,8 @@ export class StatisticsComponent implements OnInit, OnDestroy {
     this.monthlyExpenses.forEach((element) => {
       sumExpenses += element.value;
     });
-    Object.keys(this.expenceSetting).forEach((key) => {
-      sumIncome += this.expenceSetting[key as keyof ISettingsExpenses];
+    Object.keys(this.expenseSetting).forEach((key) => {
+      sumIncome += this.expenseSetting[key as keyof ISettingsExpenses];
     });
     let percentageFulfillment = (sumExpenses / sumIncome) * 100;
     percentageFulfillment = Number(percentageFulfillment.toFixed(2));

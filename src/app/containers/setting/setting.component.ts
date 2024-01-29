@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { ExpensesSettingsService } from 'src/app/core/services/expences-settings.service';
+import { ExpensesSettingsService } from 'src/app/core/services/expenses-settings.service';
 import { Category } from 'src/app/enums/category';
 
 @Component({

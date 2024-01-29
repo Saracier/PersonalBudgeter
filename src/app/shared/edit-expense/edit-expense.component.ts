@@ -3,7 +3,7 @@ import { IExpense } from 'src/app/interfaces/iexpense';
 import { Category } from 'src/app/enums/category';
 import { EditExpenseService } from 'src/app/core/services/edit-expense.service';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { ExpensesService } from 'src/app/core/services/expences.service';
+import { ExpensesService } from 'src/app/core/services/expenses.service';
 import addDays from 'date-fns/addDays';
 import { v4 } from 'uuid';
 
@@ -69,13 +69,13 @@ export class EditExpenseComponent implements OnInit {
     const oldValues = this.ExpensesService.expenses$.getValue();
     if (this.currentExpense) {
       let indexOfExpense = -1;
-      for (const expence of this.ExpensesService.expenses$.getValue()) {
-        if (expence.id === this.currentExpense.id) {
-          indexOfExpense = oldValues.indexOf(expence);
+      for (const expense of this.ExpensesService.expenses$.getValue()) {
+        if (expense.id === this.currentExpense.id) {
+          indexOfExpense = oldValues.indexOf(expense);
         }
       }
       if (indexOfExpense === -1) {
-        console.error('Cannot find such expence to edit');
+        console.error('Cannot find such expense to edit');
       }
       const editedValues = oldValues;
       editedValues[indexOfExpense].name = this.editForm.value.editName;

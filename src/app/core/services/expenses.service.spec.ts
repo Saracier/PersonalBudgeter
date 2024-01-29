@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 import { ISettingsExpenses } from 'src/app/interfaces/isettings-expenses';
-import { ExpencesSettingsService } from './expences-settings.service';
+import { ExpensesSettingsService } from './expenses-settings.service';
 
-describe('ExpencesSettingsService', () => {
-  let service: ExpencesSettingsService;
+describe('ExpensesSettingsService', () => {
+  let service: ExpensesSettingsService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(ExpencesSettingsService);
+    service = TestBed.inject(ExpensesSettingsService);
   });
 
   it('should be created', () => {

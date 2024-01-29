@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { CalendarComponent } from './calendar.component';
-import { ExpensesService } from 'src/app/core/services/expences.service';
+import { ExpensesService } from 'src/app/core/services/expenses.service';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { of } from 'rxjs';
 import { IExpense } from 'src/app/interfaces/iexpense';

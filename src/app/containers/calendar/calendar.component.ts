@@ -1,5 +1,5 @@
 import { Component, OnDestroy } from '@angular/core';
-import { ExpensesService } from 'src/app/core/services/expences.service';
+import { ExpensesService } from 'src/app/core/services/expenses.service';
 import { IExpense } from 'src/app/interfaces/iexpense';
 
 @Component({
