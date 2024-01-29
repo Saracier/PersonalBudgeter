@@ -42,8 +42,9 @@ export class AppComponent implements OnInit, OnDestroy {
     })
   );
   breakpointObserver$ = this.breakpointObserver.observe([
+    Breakpoints.XSmall,
     Breakpoints.Small,
-    Breakpoints.Small,
+    Breakpoints.Medium,
   ]);
   private _mobileQueryListener: () => void;
   @ViewChild(EditExpenseDirective, { static: false })
